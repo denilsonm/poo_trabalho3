@@ -12,69 +12,123 @@
 
 using namespace std;
 
+/*
+ * Classe Inventory
+ *  Representa um inventario de um personagem
+*/
 class Inventory{
 
-	/*	Atributos da classe	*/
+    private:
+        int spaces;
+        double gold;
 
-	private:
-		int spaces;
-		double gold;
+        vector<Item *> items;
 
-		vector<pair<Item *, bool> > items;
+    public:
 
-	public:
+    /*
+     * Nome: Inventory (Construtor)
+     * Descricao: Construtor que define os valores iniciais para os atributos da classe
+    */
+        Inventory();
 
-	/*	Metodos da classe	*/
+    /*
+     * Nome: Inventory (Construtor)
+     * Descricao: Construtor que define os valores iniciais para os atributos da classe
+     * Entrada: (int) espaco/slots, (double) ouro
+    */
+        Inventory(int space, double gld);
 
-		/*	Construtores	*/
+    /*
+     * Nome: ~Inventory (Destrutor)
+     * Descricao: Destrutor que libera a memoria do vetor de itens
+    */
+        ~Inventory();
 
-		Inventory();
+    /*
+     * Nome: getGold
+     * Descricao: Retorna o ouro do personagem
+     * Saida: Ouro
+    */
+        double getGold() const;
 
-		Inventory(int space, double gld);
+    /*
+     * Nome: addGold
+     * Descricao: aumenta ou diminui o ouro do personagem
+     * Entrada: quantidade
+    */
+        void addGold(double amount);
 
-		/*	Destrutor	*/
+    /*
+     * Nome: getAvailableSpace
+     * Descricao: Retorna o espaco livre no inventario
+     * Saida: espacos livres
+    */
+        int getAvailableSpace() const;
 
-		~Inventory();
+    /*
+     * Nome: getItemAmount
+     * Descricao: Retorna quantos itens existem
+     * Saida: (int) quantidade de itens
+    */
+        int getItemAmount() const;
 
-		/*	Metodos relativos ao gold do character	*/
+    /*
+     * Nome: setSpaces
+     * Descricao: Atribui uma quantidade de espacos para o inventario
+     * Entrada: (int) Espacos
+    */
+        void setSpaces(int n);
 
-		double getTotalGold() const;
+    /*
+     * Nome: searchItem
+     * Descricao: Retorna um item do inventario
+     * Entrada: (string) nome do item
+     * Saida: (Item*) item
+    */
+        Item * searchItem(string itemName) const;
+    /*
+     * Nome: searchItem
+     * Descricao: Retorna um item do inventario
+     * Entrada: (int) id do item
+     * Saida: (Item*) item
+    */
+        Item * searchItem(int id) const;
 
-		void spendGold(double amount);
+    /*
+     * Nome: isInInventory
+     * Descricao: Verifica se o item esta no inventario
+     * Entrada: (Item*) item
+     * Saida: (bool) esta no inventario?
+    */
+        bool isInInventory(Item * item) const;
 
-		void earnGold(double amount);
+    /*
+     * Nome: insertItem
+     * Descricao: Insere um item no inventario
+     * Entrada: (Item*) item
+     * Saida: (bool) o item foi adicionado?
+    */
+        bool insertItem(Item * newItem);
 
-		/*	Metodos relativos ao espaco no inventario	*/
-
-		int getAvailableSpace() const;
-
-		int getItemAmount() const;
-
-		void setSpaces(int n);
-
-		/*	Metodos relativos aos items contidos no inventario	*/
-
-		Item * searchItem(string itemName) const;
-		Item * searchItem(int id) const;
-
-		bool isInInventory(Item * item) const;
-
-		bool insertItem(Item * newItem);
-
-		void removeItem(string itemName);
-		void removeItem(int id);
-		void removeItem(Item * item);
-
-		void equipItem(int id);
-		void equipItem(Item * item);
-
-		bool isEquipped(Item * item) const;
-
-		int getEquippedAmount(string) const;
-		int getEquippedAmount(Item *) const;
-
-		int getWeight() const;
-
+    /*
+     * Nome: removeItem
+     * Descricao: Remove um item do inventario
+     * Entrada: (string) nome do item
+    */
+        void removeItem(string itemName);
+    /*
+     * Nome: removeItem
+     * Descricao: Remove um item do inventario
+     * Entrada: (int) id do item
+    */
+        void removeItem(int id);
+    /*
+     * Nome: removeItem
+     * Descricao: Remove um item do inventario
+     * Entrada: (Item*) item
+    */
+        void removeItem(Item * item);
 };
 
 #endif

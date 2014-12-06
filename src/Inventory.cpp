@@ -11,244 +11,219 @@
 
 using namespace std;
 
-/*	Construtores	*/
-
+/*
+ * Nome: Inventory (Construtor)
+ * Descricao: Construtor que define os valores iniciais para os atributos da classe
+*/
 Inventory::Inventory(){
-	spaces = STARTING_SPACE;
-	gold = STARTING_GOLD;
+    spaces = STARTING_SPACE;
+    gold = STARTING_GOLD;
 }
 
+/*
+ * Nome: Inventory (Construtor)
+ * Descricao: Construtor que define os valores iniciais para os atributos da classe
+ * Entrada: (int) espaco/slots, (double) ouro
+*/
 Inventory::Inventory(int space, double gld){
-	spaces = space;
-	gold = gld;
+    spaces = space;
+    gold = gld;
 }
 
-/*	Destrutor	*/
-
+/*
+ * Nome: ~Inventory (Destrutor)
+ * Descricao: Destrutor que libera a memoria do vetor de itens
+*/
 Inventory::~Inventory(){
-	int i;
+    int i;
 
-	for(i=0; i<items.size(); i++){
-		delete items[i].first;
-	}
+    for(i=0; i<items.size(); i++){
+        delete items[i];
+    }
 }
 
-/*	Metodos relativos ao gold do character	*/
-
-double Inventory::getTotalGold() const{
-	return gold;
+/*
+ * Nome: getGold
+ * Descricao: Retorna o ouro do personagem
+ * Saida: Ouro
+*/
+double Inventory::getGold() const{
+    return gold;
 }
 
-void Inventory::spendGold(double amount){
+/*
+ * Nome: addGold
+ * Descricao: aumenta ou diminui o ouro do personagem
+ * Entrada: quantidade
+*/
+void Inventory::addGold(double amount){
+    gold += amount;
 
-	if(amount < 0){
-		earnGold(-amount);
-		return;
-	}else{
-		gold = gold-amount;
-
-		if(gold < 0)
-			gold = 0;
-	}
-
+    if(gold < 0){
+        gold = 0;
 }
 
-void Inventory::earnGold(double amount){
-
-	if(amount < 0){
-		spendGold(-amount);
-		return;
-	}else{
-		gold += amount;
-	}
-
-}
-
-/*	Metodos relativos ao espaco no inventario	*/
-
+/*
+ * Nome: getAvailableSpace
+ * Descricao: Retorna o espaco livre no inventario
+ * Saida: espacos livres
+*/
 int Inventory::getAvailableSpace() const{
-	return spaces - items.size();
+    return spaces - items.size();
 }
 
+/*
+ * Nome: getItemAmount
+ * Descricao: Retorna quantos itens existem
+ * Saida: (int) quantidade de itens
+*/
 int Inventory::getItemAmount() const{
-	return items.size();
+    return items.size();
 }
 
+/*
+ * Nome: setSpaces
+ * Descricao: Atribui uma quantidade de espacos para o inventario
+ * Entrada: (int) Espacos
+*/
 void Inventory::setSpaces(int n){
 
-	if( n < items.size() ){
+    if( n < items.size() ){
 
-		// Se o novo espaco maximo do inventario nao consegue conter todos
-		// os items, os items do fim do vetor de items serao deletados ate
-		// que o numero de items fique igual a spaces. Oops :)
-		items.erase(items.end()-(items.size() - n), items.end());
+        // Se o novo espaco maximo do inventario nao consegue conter todos
+        // os items, os items do fim do vetor de items serao deletados ate
+        // que o numero de items fique igual a spaces. Oops :)
+        items.erase(items.end()-(items.size() - n), items.end());
 
-	}
+    }
 
-	spaces = n;
+    spaces = n;
 
 }
 
-/*	Metodos relativos aos items contidos no inventario	*/
-
+/*
+ * Nome: searchItem
+ * Descricao: Retorna um item do inventario
+ * Entrada: (string) nome do item
+ * Saida: (Item*) item
+    */
 Item * Inventory::searchItem(string itemName) const{
 
-	int i;
+    int i;
 
-	// Faz uma simples busca sequencial pelo item do nome procurado. Se encontra,
-	// o retorna, caso contrario, retorna NULL.
-	for(i=0; i<items.size(); i++){
-		if(items[i].first->getName() == itemName){
-			return items[i].first;
-		}
-	}
+    // Faz uma simples busca sequencial pelo item do nome procurado. Se encontra,
+    // o retorna, caso contrario, retorna NULL.
+    for(i=0; i<items.size(); i++){
+        if(items[i]->getName() == itemName){
+            return items[i];
+        }
+    }
 
-	return NULL;
-
-}
-
-Item * Inventory::searchItem(int id) const{	// Retorna o id-esimo item no inventario.
-
-	if(id < 0 || id >= items.size())
-		return NULL;
-
-	return items[id].first;
+    return NULL;
 
 }
 
+/*
+ * Nome: searchItem
+ * Descricao: Retorna um item do inventario
+ * Entrada: (int) id do item
+ * Saida: (Item*) item
+*/
+Item * Inventory::searchItem(int id) const{    // Retorna o id-esimo item no inventario.
+
+    if(id < 0 || id >= items.size())
+        return NULL;
+
+    return items[id];
+
+}
+
+/*
+ * Nome: isInInventory
+ * Descricao: Verifica se o item esta no inventario
+ * Entrada: (Item*) item
+ * Saida: (bool) esta no inventario?
+*/
 bool Inventory::isInInventory(Item * item) const{
 
-	int i;
+    int i;
 
-	for(i=0; i<items.size(); i++){
-		if(items[i].first == item)
-			return true;
-	}
+    for(i=0; i<items.size(); i++){
+        if(items[i] == item)
+            return true;
+    }
 
-	return false;
+    return false;
 
 }
 
+/*
+ * Nome: insertItem
+ * Descricao: Insere um item no inventario
+ * Entrada: (Item*) item
+ * Saida: (bool) o item foi adicionado?
+*/
 bool Inventory::insertItem(Item * newItem){
 
-	if(items.size() < spaces){
-		items.push_back(make_pair(newItem, false));
-		return true;
-	}
-	return false;
+    if(items.size() < spaces){
+        items.push_back(newItem);
+        return true;
+    }
+    return false;
 
 }
 
+/*
+ * Nome: removeItem
+ * Descricao: Remove um item do inventario
+ * Entrada: (string) nome do item
+*/
 void Inventory::removeItem(string itemName){
 
-	int i;
+    int i;
 
-	for(i=0; i<items.size(); i++){
-		if(items[i].first->getName() == itemName){
-			delete items[i].first;
+    for(i=0; i<items.size(); i++){
+        if(items[i].first->getName() == itemName){
+            delete items[i];
 
-			items.erase(items.begin()+i);
-			return;
-		}
-	}
+            items.erase(items.begin()+i);
+            return;
+        }
+    }
 
 }
 
+/*
+ * Nome: removeItem
+ * Descricao: Remove um item do inventario
+ * Entrada: (Item*) item
+*/
 void Inventory::removeItem(Item * item){
 
-	int i;
+    int i;
 
-	for(i=0; i<items.size(); i++){
-		if(items[i].first == item){
-			delete items[i].first;
+    for(i=0; i<items.size(); i++){
+        if(items[i] == item){
+            delete items[i];
 
-			items.erase(items.begin()+i);
-			return;
-		}
-	}
+            items.erase(items.begin()+i);
+            return;
+        }
+    }
 
 }
 
+/*
+ * Nome: removeItem
+ * Descricao: Remove um item do inventario
+ * Entrada: (int) id do item
+*/
 void Inventory::removeItem(int id){
 
-	if(0 <= id && id < items.size()){
-		delete items[id].first;
+    if(0 <= id && id < items.size()){
+        delete items[id];
 
-		items.erase(items.begin()+id);
-	}
-
-}
-
-void Inventory::equipItem(int id){
-
-	if(id >= items.size() || id < 0)
-		return;
-
-	if(items[id].first->MaximumEquipped() == 0){
-		return;
-	}
-
-	if(items[id].second){
-		items[id].second = false;
-	}else{
-		if(getEquippedAmount(items[id].first) >= items[id].first->MaximumEquipped())
-			return;
-
-		items[id].second = true;
-	}
-
-}
-
-void Inventory::equipItem(Item * item){
-	int i;
-
-	for(i=0; i<items.size(); i++){
-		if(items[i].first == item){
-			equipItem(i);
-			return;
-		}
-	}
-}
-
-bool Inventory::isEquipped(Item * item) const{
-	int i;
-
-	for(i=0; i<items.size(); i++){
-		if(items[i].first == item)
-			return items[i].second;
-	}
-
-	return false;
-}
-
-int Inventory::getEquippedAmount(string itemType) const{
-
-	int i, equipped = 0;
-
-	for(i=0; i<items.size(); i++){
-		if(itemType == typeid(*items[i].first).name() && items[i].second)
-			equipped++;
-	}
-
-	return equipped;
-
-}
-
-int Inventory::getEquippedAmount(Item * item) const{
-
-	return getEquippedAmount(typeid(*item).name());
-
-}
-
-int Inventory::getWeight() const{
-
-	int i, w = 0;
-
-	for(i=0; i<items.size(); i++){
-		if(items[i].second)
-			w += items[i].first->getWeight();
-	}
-
-	return w;
+        items.erase(items.begin()+id);
+    }
 
 }
