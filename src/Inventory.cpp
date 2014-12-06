@@ -227,3 +227,21 @@ void Inventory::removeItem(int id){
     }
 
 }
+
+/*
+ * Nome: getWeight
+ * Descricao: Retorna a soma do peso de todos os itens do inventario
+ * Entrada: (int) soma dos pesos
+*/
+int Inventory::getWeight() const{
+
+    int i, w = 0;
+
+    for(i=0; i<items.size(); i++){
+        if(items[i].second)
+            w += items[i].first->getWeight();
+    }
+
+    return w;
+
+}

@@ -26,10 +26,10 @@ void HealthPotion::use(Character & character){
  * Descricao: retorna uma string descrevendo o item
  * Saida: (string) descricao do item
 */
-virtual string describe() const{
+string HealthPotion::describe() const{
     ostringstream buffer;
 
-    buffer << this->getName << " ( " << price << " G / Restores " << restorepts << " HP )";
+    buffer << this->getName << " ( " << this->getPrice() << " G / Restores " << restorepts << " HP )";
 
     return buffer.str();  
 }

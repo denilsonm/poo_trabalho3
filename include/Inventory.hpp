@@ -129,6 +129,13 @@ class Inventory{
      * Entrada: (Item*) item
     */
         void removeItem(Item * item);
+
+    /*
+     * Nome: getWeight
+     * Descricao: Retorna a soma do peso de todos os itens do inventario
+     * Entrada: (int) soma dos pesos
+    */
+        int getWeight() const;
 };
 
 #endif

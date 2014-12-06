@@ -23,7 +23,7 @@ class ManaPotion : public Potion{
      * Descricao: retorna uma string descrevendo o item
      * Saida: (string) descricao do item
     */
-    virtual string describe() const = 0;
+    virtual string describe() const;
 
     /*
      * Nome: use

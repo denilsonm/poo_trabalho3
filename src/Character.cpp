@@ -63,11 +63,12 @@ int Character::getHP() const{
 
 /*
  * Nome: getSpeed
- * Descricao: Retorna a velocidade
+ * Descricao: Retorna a velocidade, baseado na soma dos pesos de todos os
+    itens no inventario
  * Saída: (int) velocidade
 */
 int Character::getSpeed() const{
-    return (double)speed*exp(-pow((double)myitems.getWeight()/20.0, 2.0));
+    return (double)speed*exp(-pow((double)inventory.getWeight()/20.0, 2.0));
 }
 
 /*
@@ -197,21 +198,19 @@ void Character::attack(Character * victim){
         // Miss: multiplicador 0 de dano
 
         multiplier = 0;
-        cout << alias << " tries to attack " << victim->getName() << " and misses.\n";
+        cout << getName() << " tries to attack " << victim->getName() << " and misses.\n";
     }else if(critchance + misschance > chance){
         // Critical strike: multiplicador 2 de dano
 
         multiplier = 2;
-        cout << alias << " hits " << victim->getName() << "'s weakest spot and does " << damage*2 << " damage.\n";
+        cout << getName() << " hits " << victim->getName() << "'s weakest spot and does " << damage*2 << " damage.\n";
     }else{
         // Ataque normal
 
-        cout << alias << " attacks " << victim->getName() << " and does " << damage << " damage.\n";
+        cout << getName() << " attacks " << victim->getName() << " and does " << damage << " damage.\n";
     }
 
     victim->HP -= GameUtil::checkInterval(1, damage*multiplier, victim->HP);
-    if(victim->HP==0)
-        victim->dead = true;
     
     if(!victim->isAlive()){
         cout << victim->getName() << " died!\n";
@@ -225,7 +224,7 @@ void Character::attack(Character * victim){
  * Saida: (bool) sucesso?
 */
 bool Character::takeItem(Item * item){
-    return myitems.insertItem(item);
+    return inventory.insertItem(item);
 }
 
 /*
@@ -237,7 +236,7 @@ void Character::equip(Equipment * equipment){
 
     // Se o item estiver no inventorio do character, tenta equipa-lo
 
-    if(myitems.isInInventory(equipment)){
+    if(inventory.isInInventory(equipment)){
         equipments.push_back(equipment);
     }
 
@@ -258,7 +257,7 @@ void Character::unequip(Equipment * equipment){
  * Entrada: (Item*) item
 */
 void Character::removeItem(Item * item){
-    myitems.removeItem(item);
+    inventory.removeItem(item);
 
 }
 
@@ -279,10 +278,10 @@ int Character::getBaseDefensePoints() const{
     int i;
     double def = 0.5*(double)constitution + 0.3*(double)dexterity + 0.2*(double)speed;
 
-    for(i=0; i<myitems.getItemAmount(); i++){
-        Item * currentItem = myitems.searchItem(i);
+    for(i=0; i<inventory.getItemAmount(); i++){
+        Item * currentItem = inventory.searchItem(i);
 
-        if(myitems.isEquipped(currentItem))
+        if(inventory.isEquipped(currentItem))
             def += (double)currentItem->getDefensePoints();
     }
 
@@ -299,10 +298,10 @@ int Character::getBaseAttackPoints() const{
     int i;
     int atk = 0.5*(double)strength + 0.3*(double)dexterity + 0.2*(double)speed;
 
-    for(i=0; i<myitems.getItemAmount(); i++){
-        Item * currentItem = myitems.searchItem(i);
+    for(i=0; i<inventory.getItemAmount(); i++){
+        Item * currentItem = inventory.searchItem(i);
 
-        if(myitems.isEquipped(currentItem))
+        if(inventory.isEquipped(currentItem))
             atk += (double)currentItem->getAttackPoints();
     }
 

@@ -1,3 +1,6 @@
+#ifndef EQUIPMENT_H
+#define EQUIPMENT_H
+
 /*
         Interface Equipment
 */
@@ -24,3 +27,5 @@ class Equipment{
     */
     virtual int MaximumEquipped() = 0;
 };
+
+#endif

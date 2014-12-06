@@ -40,3 +40,10 @@ void Tournament::startRound(){
         if(battles[i].joinable())
             battles[i].join();
 }
+
+Party * Tournament::getWinner(){
+    if(mainBracket != NULL)
+        return mainBracket->getWinner();
+    else
+        return NULL;
+}

@@ -4,6 +4,7 @@
 #include <vector>
 #include <thread>
 
+#include "Party.hpp"
 #include "Character.hpp"
 #include "GameUtil.hpp"
 
@@ -41,7 +42,7 @@ class Bracket{
      * Descricao: Resolve a arvore de chaves de forma recursiva
      * Entrada: (vector<thread>) vetor de threads
     */
-        void solveTree(vector<thread> battles);
+        void solveTree(vector<thread> & battles);
 
     /*
      * Nome: solveBattle
@@ -49,6 +50,13 @@ class Bracket{
      * Saida: (void)
     */
         void solveBattle();
+
+    /*
+     * Nome: getWinner
+     * Descricao: retorna o conteudo de winner
+     * Saida: (void) party vencedora dos dois brackets filhos
+    */
+        Party * getWinner();
 
 };
 

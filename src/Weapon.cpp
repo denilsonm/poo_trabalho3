@@ -29,10 +29,10 @@ Weapon::Weapon(Weapon & weapon) : Item(weapon){
  * Descricao: retorna uma string descrevendo o item
  * Saida: (string) descricao do item
 */
-virtual string describe() const{
+string Weapon::describe() const{
     ostringstream buffer;
 
-    buffer << this->getName << " ( " << price << " G / " << getAttackPts() << " attack / range: " << range << " m )";
+    buffer << this->getName() << " ( " << this->getPrice() << " G / " << this->getAttackPts() << " attack / range: " << this->range << " m )";
 
     return buffer.str();  
 }
@@ -80,5 +80,5 @@ int Armor::MaximumEquipped() const{
  * Saida: void
 */
 void Armor::use(Character & character){
-    target.equipItem(this);
+    target.equip(this);
 }

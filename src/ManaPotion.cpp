@@ -31,10 +31,10 @@ void ManaPotion::use(Character & character){
  * Descricao: retorna uma string descrevendo o item
  * Saida: (string) descricao do item
 */
-virtual string describe() const{
+string ManaPotion::describe() const{
     ostringstream buffer;
 
-    buffer << this->getName << " ( " << price << " G / Restores " << restorepts << " MP )";
+    buffer << this->getName << " ( " << this->getPrice() << " G / Restores " << restorepts << " MP )";
 
     return buffer.str();  
 }

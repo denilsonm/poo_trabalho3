@@ -10,6 +10,7 @@
 #include "Equipment.hpp"
 
 #define MAX_XP 100
+
 #define MAX_HP 100
 
 #define MAX_ATTR_SUM 100
@@ -23,10 +24,10 @@ using namespace std;
 class Character{
 
     private:
-        string alias;
+        string name;
 
         Inventory inventory;
-        std::vector<Equipment*> equipments;
+        vector<Equipment*> equipments;
 
         int HP;
         int MP;
@@ -76,7 +77,8 @@ class Character{
 
         /*
                * Nome: getSpeed
-               * Descricao: Retorna a velocidade
+               * Descricao: Retorna a velocidade, baseado na soma dos pesos de todos os
+                itens no inventario
                * Saída: (int) velocidade
             */
         int getSpeed() const;

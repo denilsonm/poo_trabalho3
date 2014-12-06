@@ -5,6 +5,12 @@
 
 #include "Bracket.hpp"
 
+int blargh(){
+    printf("a");
+
+    return 1;
+}
+
 using namespace std;
 
     /*
@@ -54,7 +60,7 @@ Bracket::~Bracket(){
     */
 void Bracket::solveTree(vector<thread> & battles){
     if(winner == NULL && leftBracket->winner != NULL && rightBracket->winner != NULL){
-        battles.push_back(thread(solveBattle));
+        battles.push_back(thread(&Bracket::solveBattle, this));
     }else{
         leftBracket->solveTree(battles);
         rightBracket->solveTree(battles);
@@ -133,5 +139,9 @@ void Bracket::solveBattle(){
     // Restaurando o HP ds personagens do time vencedor,
     // para que eles possam batalhar novamente
 
-    winner->resurrectCharacter();
+    winner->resurrectCharacters();
+}
+
+Party * Bracket::getWinner(){
+    return winner;
 }

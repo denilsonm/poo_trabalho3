@@ -35,7 +35,7 @@ class Party{
 
         /*    Destrutor    */
 
-        ~Party);
+        ~Party();
 
         /*    Outros    */
 

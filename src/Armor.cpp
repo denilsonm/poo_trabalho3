@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 
 #include "Armor.hpp"
 #include "GameUtil.hpp"
@@ -31,10 +32,10 @@ Armor::Armor(Armor & armor) : Item(armor){
  * Descricao: retorna uma string descrevendo o item
  * Saida: (string) descricao do item
 */
-virtual string describe() const{
+string Armor::describe() const{
     ostringstream buffer;
 
-    buffer << this->getName << " ( " << price << " G / " << getDefensePts() << " defense / weights " << weight << " )";
+    buffer << this->getName() << " ( " << this->getPrice() << " G / " << this->getDefensePts() << " defense / weights " << this->weight << " )";
 
     return buffer.str();  
 }
@@ -82,5 +83,5 @@ int Armor::MaximumEquipped() const{
  * Saida: void
 */
 void Armor::use(Character & character){
-    character.equipItem(this);
+    character.equip(this);
 }
