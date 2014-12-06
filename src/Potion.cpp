@@ -5,8 +5,7 @@
  * Descricao: Construtor que define os valores iniciais para os atributos da classe
  * Entrada: (std::string) nome da pocao, (double) preço, (int) poder de restauracao
 */
-Potion::Potion(string name, double price, int restorepts) : Item(name, price)
-{
+Potion::Potion(string name, double price, int restorepts) : Item(name, price{
     this->restorepts = restorepts;
 }
 
@@ -15,7 +14,6 @@ Potion::Potion(string name, double price, int restorepts) : Item(name, price)
  * Descricao: Construtor que copia os atributos de um objeto Potion
  * Entrada: (Potion&) Referencia para um objeto Potion
 */
-Potion::Potion(Potion & potion) : Item(potion)
-{
+Potion::Potion(Potion & potion) : Item(potion){
     restorepts = potion.restorepts;
 }

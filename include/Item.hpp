@@ -15,8 +15,7 @@ class Character;
  * Classe Item
  *  Representa um item no jogo
 */
-class Item
-{
+class Item{
     private:
 
     string name; // Nome do item
@@ -62,10 +61,10 @@ class Item
     /*
      * Nome: use
      * Descricao: metodo virtual, utiliza um item
-     * Entrada: (Character*) personagem usando a pocao
+     * Entrada: (Character&) personagem usando o item
      * Saida: (void)
     */
-    virtual void use(Character* character) = 0;
+    virtual void use(Character & character) = 0;
 };
 
 #endif

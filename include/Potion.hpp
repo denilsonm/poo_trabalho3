@@ -11,8 +11,7 @@ using namespace std;
  * Classe Potion
  *  Representa uma poção no jogo
 */
-class Potion : public Item
-{
+class Potion : public Item{
     private:
     int restorepts;
 
