@@ -24,7 +24,7 @@ class Item
 
     public:
 
-    /*
+    /*  
      * Nome: Item (Construtor)
      * Descricao: Construtor que define os valores iniciais para os atributos da classe
      * Entrada: (string) nome do item, (double) preço
@@ -43,14 +43,21 @@ class Item
      * Descricao: Retorna o nome do item
      * Saida: (std::string) nome
     */
-    std::string getName();
+    std::string getName() const;
 
     /*
      * Nome: getPrice
      * Descricao: Retorna o preço do item
      * Saida: (double) preço
     */
-    double getPrice();
+    double getPrice() const;
+
+    /*
+     * Nome: getWeight
+     * Descricao: Metodo virtual, retorna o peso do item
+     * Saida: (double) peso
+    */
+    double Item::getWeight() const;
 
     /*
      * Nome: use
@@ -58,7 +65,7 @@ class Item
      * Entrada: (Character*) personagem usando a pocao
      * Saida: (void)
     */
-    virtual void use(Character* character);
+    virtual void use(Character* character) = 0;
 };
 
 #endif

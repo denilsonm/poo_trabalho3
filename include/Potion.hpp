@@ -20,9 +20,9 @@ class Potion : public Item
     /*
      * Nome: Potion (Construtor)
      * Descricao: Construtor que define os valores iniciais para os atributos da classe
-     * Entrada: (std::string) nome da pocao, (double) preço, (int) poder de restauracao
+     * Entrada: (string) nome da pocao, (double) preço, (int) poder de restauracao
     */
-    Potion(std::string name, double price, int restorepts);
+    Potion(string name, double price, int restorepts);
 
     /*
      * Nome: Potion (Construtor de cópia)

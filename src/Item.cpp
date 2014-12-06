@@ -6,8 +6,7 @@
  * Descricao: Construtor que define os valores iniciais para os atributos da classe
  * Entrada: (string) nome do item, (double) preço
 */
-Item::Item(string name, double price)
-{
+Item::Item(string name, double price){
     this->name = name;
     this->price = price;
 }
@@ -17,8 +16,7 @@ Item::Item(string name, double price)
  * Descricao: Construtor que copia os atributos de um objeto Item
  * Entrada: (Item&) referencia ao objeto Item
 */
-Item::Item(Item & item)
-{
+Item::Item(Item & item){
     name = item.name;
     price = item.price;
 }
@@ -28,8 +26,7 @@ Item::Item(Item & item)
  * Descricao: Retorna o nome do item
  * Saida: (std::string) nome
 */
-std::string Item::getName()
-{
+std::string Item::getName() const{
     return name;
 }
 
@@ -38,19 +35,8 @@ std::string Item::getName()
  * Descricao: Retorna o preço do item
  * Saida: (double) preço
 */
-double Item::getPrice()
-{
+double Item::getPrice() const{
     return price;
-}
-
-/*
- * Nome: use
- * Descricao: metodo virtual, utiliza um item
- * Entrada: (Character*) personagem usando a pocao
- * Saida: (void)
-*/
-void Item::use(Character* character)
-{
 }
 
 /*
@@ -58,7 +44,6 @@ void Item::use(Character* character)
  * Descricao: Metodo virutal, retorna o peso do item
  * Saida: (double) peso
 */
-double Item::getWeight()
-{
+double Item::getWeight() const{
     return 0;
 }
