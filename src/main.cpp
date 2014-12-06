@@ -38,11 +38,11 @@ int main(){
 
     // Introducao do jogo
 
-    cout << "<<Lore vai aqui>>\n\n";
+    cout << "TODO<<Lore vai aqui>>\n\n";
 
     // Lendo o nome do jogador
 
-    cout << "Pick your name: ";
+    cout << "Pick your name: " << endl;
 
     string playerName;
     cin >> playerName;
@@ -52,7 +52,7 @@ int main(){
     int playerClass;
 
     do{
-        cout << "Pick your class (1 - Knight/2 - Wizard/3 - Archer): ";
+        cout << "Pick your class (1 - Knight/2 - Wizard/3 - Archer): " << endl;
         cin >> playerClass;
     }while(playerClass < 1 || playerClass > 3)
 
@@ -77,13 +77,18 @@ int main(){
     cout << "\nYou have received the following items:\n\n";
     // TODO start kit
 
-    cout << "May the bravest of all win!";
+    cout << "Pick your party name: " << endl;
+    
+    string partyName;
+    cin >> partyName;
 
     // Cria um vetor de parties participantes do torneio
     vector<Party*> partyList;
 
+    Color partyColor = blue;
+
     // Cria o time do jogador
-    Party party = new Party("TODO", TODO);
+    Party party = new Party(partyName, partyColor++);
 
     // Coloca o jogador no time
     party.addChar(player);
@@ -96,14 +101,17 @@ int main(){
         switch(npcClass)
         {
             case 1: // Knight
-                party.addChar(new Knight("TODO", 100, 0, 1));
+                party.addChar(new Knight(GameUtil::makeName("name", "surname"), 100, 0, 1));
                 break;
+
             case 2: // Wizard
-                party.addChar(new Wizard("TODO", 70, 50, 1));
+                party.addChar(new Wizard(GameUtil::makeName("name", "surname"), 70, 50, 1));
                 break;
+
             case 3: // Archer
-                party.addChar(new Archer("TODO", 80, 0, 1));
+                party.addChar(new Archer(GameUtil::makeName("name", "surname"), 80, 0, 1));
                 break;
+
             default:
                 break;
         }
@@ -115,7 +123,7 @@ int main(){
     // Cria os times inimigos
     for(unsigned int i = 0; i < 7; i++)
     {
-        party = new Party("TODO", TODO);
+        party = new Party(GameUtil::makeName("TODO", "TODO"), partyColor++);
 
         // Cria os NPC's dos outros times
         for(unsigned int i = 0; i < 3; i++)
@@ -125,13 +133,13 @@ int main(){
             switch(npcClass)
             {
                 case 1: // Knight
-                    party.addChar(new Knight(playerName, 100, 0, 1));
+                    party.addChar(new Knight(GameUtil::makeName("name", "surname"), 100, 0, 1));
                     break;
                 case 2: // Wizard
-                    party.addChar(new Wizard(playerName, 70, 50, 1));
+                    party.addChar(new Wizard(GameUtil::makeName("name", "surname"), 70, 50, 1));
                     break;
                 case 3: // Archer
-                    party.addChar(new Archer(playerName, 80, 0, 1));
+                    party.addChar(new Archer(GameUtil::makeName("name", "surname"), 80, 0, 1));
                     break;
                 default:
                     break;
@@ -145,8 +153,10 @@ int main(){
     // Cria um torneio e coloca a lista de parties
     Tournament tournament(partyList);
 
+    cout << "May the bravest of all win!";
+    
     // Inicia o torneio
-    while(tournament.getWinner() == NULL) // TODO verificar se jogador morreu em algum lugar
+    while(tournament.getWinner() == NULL && player.isAlive())
     {
         // Executa um round do torneio
         tournament.startRound();
@@ -155,6 +165,11 @@ int main(){
         //TODO shop
     }
 
+    if(tournmant.getWinner() == player)
+        cout << "TODO<congratulations here>" << endl;
+    else
+        cout << "TODO<game over here>" << endl;
+
     // Deleta as parties que participaram do torneio
     for(unsigned int i = 0; i < partyList.size(); i++)
     {
@@ -162,6 +177,6 @@ int main(){
     }
     partyList.erase();
 
-    // Deleta a memória usada pelo jogador
+    // Deleta a memoria usada pelo jogador
     delete player;
 }

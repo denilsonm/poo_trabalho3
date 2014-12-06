@@ -8,8 +8,9 @@ enum Color{
 	green,
 	yellow,
 	white,
-	black
-
+	black,
+    purple,
+    oragen
 };
 
 #endif
