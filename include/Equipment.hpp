@@ -26,6 +26,13 @@ class Equipment{
      * Saida: (int) quantidade máxima
     */
     virtual int MaximumEquipped() = 0;
+    
+    /*
+     * Nome: getName
+     * Descricao: (puramente virtual) retorna o nome do equipamento
+     * Saida: (string) nome do equipamento
+    */
+    virtual string getName() const = 0;
 };
 
 #endif

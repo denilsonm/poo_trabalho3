@@ -98,10 +98,10 @@ class Inventory{
     /*
      * Nome: isInInventory
      * Descricao: Verifica se o item esta no inventario
-     * Entrada: (Item*) item
+     * Entrada: (string) nome do item
      * Saida: (bool) esta no inventario?
     */
-        bool isInInventory(Item * item) const;
+        bool isInInventory(const string itemName) const;
 
     /*
      * Nome: insertItem

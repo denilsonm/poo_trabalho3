@@ -114,7 +114,7 @@ Item * Inventory::searchItem(string itemName) const{
     // Faz uma simples busca sequencial pelo item do nome procurado. Se encontra,
     // o retorna, caso contrario, retorna NULL.
     for(i=0; i<items.size(); i++){
-        if(items[i]->getName() == itemName){
+        if(items[i]->getName().compare(itemName) == 0){
             return items[i];
         }
     }
@@ -141,20 +141,12 @@ Item * Inventory::searchItem(int id) const{    // Retorna o id-esimo item no inv
 /*
  * Nome: isInInventory
  * Descricao: Verifica se o item esta no inventario
- * Entrada: (Item*) item
+ * Entrada: (string) nome do item
  * Saida: (bool) esta no inventario?
 */
-bool Inventory::isInInventory(Item * item) const{
+bool Inventory::isInInventory(const string itemName) const{
 
-    int i;
-
-    for(i=0; i<items.size(); i++){
-        if(items[i] == item)
-            return true;
-    }
-
-    return false;
-
+    return searchItem(itemName) != NULL;
 }
 
 /*
