@@ -12,57 +12,57 @@
 
 class Party{
 
-	private:
+    private:
 
-	/*	Atributos da classe	*/
+    /*    Atributos da classe    */
 
-		string name;
-		Color color;
+        string name;
+        Color color;
 
-		int win;
-		int lose;
-		int draw;
+        int win;
+        int lose;
+        int draw;
 
-		vector<Character *> characters;
+        vector<Character *> characters;
 
-	public:
+    public:
 
-	/*	Metodos da classe	*/
+    /*    Metodos da classe    */
 
-		/*	Construtor	*/
+        /*    Construtor    */
 
-		Party(string, Color);
+        Party(string, Color);
 
-		/*	Destrutor	*/
+        /*    Destrutor    */
 
-		~Party);
+        ~Party);
 
-		/*	Outros	*/
+        /*    Outros    */
 
-		string getName();
+        string getName();
 
-		string getResults();
+        string getResults();
 
-		string toString();
+        string toString();
 
-		double getPoints();
+        double getPoints();
 
-		void resolveBattle(Party &);	// Nao existe razao para resolveBattle retornar um inteiro
+        void resolveBattle(Party &);    // Nao existe razao para resolveBattle retornar um inteiro
 
-		void addChar(Character *);
+        void addChar(Character *);
 
-		void removeChar(int);
-		void removeChar(Character *);
+        void removeChar(int);
+        void removeChar(Character *);
 
-		Character * searchChar(string);
+        Character * searchChar(string);
 
-		queue<Character *> shuffleCharacters();
-		Character * getRandomAliveCharacter();
+        queue<Character *> shuffleCharacters();
+        Character * getRandomAliveCharacter();
 
-		bool isAlive();
+        bool isAlive();
 
-		void resurrectCharacters();
-		
+        void resurrectCharacters();
+        
 };
 
 

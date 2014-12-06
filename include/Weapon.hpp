@@ -5,6 +5,7 @@
 
 #include "Item.hpp"
 #include "Equipment.hpp"
+#include "Character.hpp"
 
 /*
  * Classe Weapon
@@ -20,7 +21,7 @@ class Weapon : public Item, public Equipment{
     /*
      * Nome: Weapon (Construtor)
      * Descricao: Construtor que define os valores iniciais para os atributos da classe
-     * Entrada: (std::string) nome da arma, (double) preço, (int) pontos de ataque, (double) alcance
+     * Entrada: (string) nome da arma, (double) preço, (int) pontos de ataque, (double) alcance
     */
     Weapon(const string name, double price, int attackpts, double range);
 

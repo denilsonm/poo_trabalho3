@@ -40,7 +40,7 @@ class Item{
     /*
      * Nome: getName
      * Descricao: Retorna o nome do item
-     * Saida: (std::string) nome
+     * Saida: (string) nome
     */
     string getName() const;
 

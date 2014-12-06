@@ -24,9 +24,9 @@ Item::Item(Item & item){
 /*
  * Nome: getName
  * Descricao: Retorna o nome do item
- * Saida: (std::string) nome
+ * Saida: (string) nome
 */
-std::string Item::getName() const{
+string Item::getName() const{
     return name;
 }
 

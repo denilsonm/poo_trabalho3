@@ -14,9 +14,9 @@ class HealthPotion : public Potion{
     /*
      * Nome: HealthPotion (Construtor)
      * Descricao: Construtor que define os valores iniciais para os atributos da classe
-     * Entrada: (std::string) nome da pocao, (double) preço, (int) poder de restauracao de vida
+     * Entrada: (string) nome da pocao, (double) preço, (int) poder de restauracao de vida
     */
-    HealthPotion(std::string name, double price, int restorepts);
+    HealthPotion(string name, double price, int restorepts);
 
     /*
      * Nome: describe
