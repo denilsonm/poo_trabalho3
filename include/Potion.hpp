@@ -21,7 +21,7 @@ class Potion : public Item{
      * Descricao: Construtor que define os valores iniciais para os atributos da classe
      * Entrada: (string) nome da pocao, (double) preço, (int) poder de restauracao
     */
-    Potion(string name, double price, int restorepts);
+    Potion(const string name, double price, int restorepts);
 
     /*
      * Nome: Potion (Construtor de cópia)

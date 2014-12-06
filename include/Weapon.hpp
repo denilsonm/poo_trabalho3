@@ -22,7 +22,7 @@ class Weapon : public Item, public Equipment{
      * Descricao: Construtor que define os valores iniciais para os atributos da classe
      * Entrada: (std::string) nome da arma, (double) preço, (int) pontos de ataque, (double) alcance
     */
-    Weapon(std::string name, double price, int attackpts, double range);
+    Weapon(const string name, double price, int attackpts, double range);
 
     /*
      * Nome: Weapon (Construtor de cópia)

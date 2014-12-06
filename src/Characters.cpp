@@ -6,54 +6,141 @@ using namespace std;
 
 /* ============== CLASSE KNIGHT ============== */
 
-	Knight::Knight(string name, int newpower) : Character(name){
-		power = newpower;
-	}
+/*
+ * Nome: Knight (Construtor)
+ * Descricao: Construtor que define os valores iniciais para os atributos da classe
+ * Entrada: (string) nome do personagem, (int) vida, (int) mp, (int) poder
+*/
+Knight::Knight(string name, int hp, int mp, int newpower) : Character(name, hp, mp){
+    power = newpower;
+}
 
-	void Knight::addPower(int add){
-		power += add;
-	}
+/*
+ * Nome: addPower
+ * Descricao: Adiciona poder
+ * Entrada: (int) poder
+*/
+void Knight::addPower(int add){
+    power += add;
+}
 
-	int Knight::getAttackPoints() const{
-		return Character::getBaseAttackPoints();
-	}
+/*
+ * Nome: getPower
+ * Descricao: retorna o poder
+ * Saida: (int) poder
+*/
+int Knight::getPower() const{
+    return power;
+}
 
-	int Knight::getDefensePoints() const{
-		return Character::getBaseDefensePoints() + power;
-	}
+/*
+ * Nome: getAttackPts
+ * Descricao: retorna a quantidade de pontos de ataque
+ * Saida: (int) pontos de ataque
+*/
+int Knight::getAttackPoints() const{
+    return Character::getBaseAttackPoints();
+}
+
+/*
+ * Nome: getDefensePts
+ * Descricao: retorna a quantidade de pontos de defesa
+ * Saida: (int) pontos de defesa
+*/
+int Knight::getDefensePoints() const{
+    return Character::getBaseDefensePoints() + power;
+}
 
 /* ============== CLASSE WIZARD ============== */
 
-	Wizard::Wizard(string name, int newwisdom) : Character(name){
-		wisdom = newwisdom;
-	}
+/*
+ * Nome: Wizard (Construtor)
+ * Descricao: Construtor que define os valores iniciais para os atributos da classe
+ * Entrada: (string) nome do personagem, (int) vida, (int) mp, (int) sabedoria
+*/
+Wizard::Wizard(string name, int hp, int mp, int newwisdom) : Character(name, hp, mp){
+    wisdom = newwisdom;
+}
 
-	void Wizard::addWisdom(int add){
-		wisdom += add;
-	}
+/*
+ * Nome: addWisdom
+ * Descricao: Adiciona sabedoria
+ * Entrada: (int) sabedoria
+*/
+void Wizard::addWisdom(int add){
+    wisdom += add;
+}
 
-	int Wizard::getAttackPoints() const{
-		return Character::getBaseAttackPoints();
-	}
+/*
+ * Nome: getWisdom
+ * Descricao: retorna a sabedoria
+ * Saida: (int) sabedoria
+*/
+int Wizard::getWisdom() const{
+    return wisdom;
+}
 
-	int Wizard::getDefensePoints() const{
-		return Character::getBaseDefensePoints() + wisdom/2;
-	}
+/*
+ * Nome: getAttackPts
+ * Descricao: retorna a quantidade de pontos de ataque
+ * Saida: (int) pontos de ataque
+*/
+int Wizard::getAttackPoints() const{
+    return Character::getBaseAttackPoints();
+}
+
+/*
+ * Nome: getDefensePts
+ * Descricao: retorna a quantidade de pontos de defesa
+ * Saida: (int) pontos de defesa
+*/
+int Wizard::getDefensePoints() const{
+    return Character::getBaseDefensePoints() + wisdom/2;
+}
 
 /* ============== CLASSE THIEF ============== */
 
-	Thief::Thief(string name, int newstealth) : Character(name){
-		stealth = newstealth;
-	}
+/*
+ * Nome: Archer (Construtor)
+ * Descricao: Construtor que define os valores iniciais para os atributos da classe
+ * Entrada: (string) nome do personagem, (int) vida, (int) mp, (int) sorte
+*/
+Archer::Thief(string name, int hp, int mp, int newstealth) : Character(name, hp, mp){
+    stealth = newstealth;
+}
 
-	void Thief::addStealth(int add){
-		stealth += add;
-	}
+/*
+ * Nome: addLuck
+ * Descricao: Adiciona sorte
+ * Entrada: (int) sorte
+*/
+void Archer::addStealth(int add){
+    stealth += add;
+}
 
-	int Thief::getAttackPoints() const{
-		return Character::getBaseAttackPoints() + stealth;
-	}
+/*
+ * Nome: getLuck
+ * Descricao: retorna a sorte -> "We're up all night to get lucky"
+ * Saida: (int) sorte
+*/
+int Archer::getLuck() const{
+    return luck;
+}
 
-	int Thief::getDefensePoints() const{
-		return Character::getBaseDefensePoints();
-	}
+/*
+ * Nome: getAttackPts
+ * Descricao: retorna a quantidade de pontos de ataque
+ * Saida: (int) pontos de ataque
+*/
+int Archer::getAttackPoints() const{
+    return Character::getBaseAttackPoints() + stealth;
+}
+
+/*
+ * Nome: getDefensePts
+ * Descricao: retorna a quantidade de pontos de defesa
+ * Saida: (int) pontos de defesa
+*/
+int Archer::getDefensePoints() const{
+    return Character::getBaseDefensePoints();
+}

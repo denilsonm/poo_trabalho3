@@ -16,7 +16,7 @@ class ManaPotion : public Potion{
      * Descricao: Construtor que define os valores iniciais para os atributos da classe
      * Entrada: (std::string) nome da pocao, (double) preço, (int) poder de restauracao de mana
     */
-    ManaPotion(std::string name, double price, int restorepts);
+    ManaPotion(const string name, double price, int restorepts);
 
     /*
      * Nome: use

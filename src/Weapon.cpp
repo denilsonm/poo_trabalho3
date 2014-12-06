@@ -5,9 +5,9 @@
 /*
  * Nome: Weapon (Construtor)
  * Descricao: Construtor que define os valores iniciais para os atributos da classe
- * Entrada: (std::string) nome da arma, (double) preço, (int) pontos de ataque, (double) alcance
+ * Entrada: (string) nome da arma, (double) preço, (int) pontos de ataque, (double) alcance
 */
-Weapon::Weapon(std::string name, double price, int attackpts, double range) : Item(name, price){
+Weapon::Weapon(const string name, double price, int attackpts, double range) : Item(name, price){
     // Certifica que os pontos de ataque estão dentro do intervalo permitido
     this->defensepts = GameUtil::checkInterval(1, defensepts, 20);
 

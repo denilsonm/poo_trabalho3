@@ -4,8 +4,10 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <vector>
 
 #include "Inventory.hpp"
+#include "Equipment.hpp"
 
 #define MAX_XP 100
 #define MAX_HP 100
@@ -14,103 +16,185 @@
 
 using namespace std;
 
+/*
+ * Classe Character
+ *  Representa um personagem do jogo
+*/
 class Character{
 
-	/*	Atributos da classe	*/
+    private:
+        string alias;
 
-	private:
-		string alias;
-		Inventory myitems;
+        Inventory inventory;
+        std::vector<Equipment*> equipments;
 
-		int HP;
-		int MP;
+        int HP;
+        int MP;
 
-	protected:
-		int XP;
+        int XP;
 
-		int strength;
-		int speed;
-		int dexterity;
-		int constitution;
+        int strength;
+        int speed;
+        int dexterity;
+        int constitution;
+    public:
 
-		bool dead;		// Diz se o personagem esta morto. Se esta,
-						// chamadas a funcao takeDamage sao ignoradas.
-	public:
+        /*
+               * Nome: Character (Construtor)
+               * Descricao: Construtor que define os valores iniciais para os atributos da classe
+               * Entrada: (string) nome do personagem, (int) vida, (int) mp
+            */
+        Character(const string name, int hp, int mp);
 
-	/*	Metodos da classe	*/
+        /*
+               * Nome: getName
+               * Descricao: Retorna o nome do personagem
+               * Saida: (string) nome
+            */
+        string getName() const;
 
-		/*	Construtor	*/
+        /*
+               * Nome: getHP
+               * Descricao: Retorna os pontos de vida
+               * Saída: (int) hp
+            */
+        int getHP() const;
 
-		Character(const string name);
+        /*
+               * Nome: isAlive
+               * Descricao: Retorna se o personagem esta vivo
+               * Saída: (bool) esta vivo?
+            */
+        bool isAlive() const;
 
-		/*
-			Para a classe Character, nao ha necessidade de um destrutor, ja que
-			o proprio programa se encarrega de destruir tipos primitivos e a string
-			alias, e quanto ao atributo myitems, seu destrutor eh chamado
-			automaticamente quando Character eh destruido.
-		*/
+        /*
+               * Nome: getAttributeSum
+               * Descricao: Retorna a soma dos atributos
+               * Saída: (int) soma dos atributos
+            */
+        int getAttributeSum() const;
 
-		/*	Metodos getters	*/
+        /*
+               * Nome: getSpeed
+               * Descricao: Retorna a velocidade
+               * Saída: (int) velocidade
+            */
+        int getSpeed() const;
 
-		string getName() const;
+        /*
+               * Nome: setStrength
+               * Descricao: Atribui uma forca
+               * Entrada: (int) forca
+            */
+        void setStrength(int newStr);
 
-			// Foi necessario implementar o metodo getHP para que a classe
-			// Team conseguisse acessar o HP de cada personagem.
+        /*
+               * Nome: setSpeed
+               * Descricao: Atribui uma velocidade
+               * Entrada: (int) velocidade
+            */
+        void setSpeed(int newSpd);
 
-		int getHP() const;
+        /*
+               * Nome: setDexterity
+               * Descricao: Atribui uma Destreza
+               * Entrada: (int) destreza
+            */
+        void setDexterity(int newDex);
 
-		bool isAlive() const;
+        /*
+               * Nome: setConstitution
+               * Descricao: Atribui uma constituicao
+               * Entrada: (int) constituicao
+            */
+        void setConstitution(int newConst);
 
-		int getAttributeSum() const;
+        /*
+               * Nome: addHP
+               * Descricao: Aumenta ou diminui o HP
+               * Entrada: (int) Quantidade
+            */
+        void addHP(int amount);
 
-		int getSpeed() const;
+        /*
+               * Nome: addMP
+               * Descricao: Aumenta ou diminui o MP
+               * Entrada: (int) Quantidade
+            */
+        void addMP(int amount);
 
-		/*	Metodos setters	*/
+        /*
+               * Nome: addXP
+               * Descricao: Aumenta o XP
+               * Entrada: (int) Quantidade
+            */
+        void addXP(int amount);
 
-		void setStrength(int newStr);
+        /*
+               * Nome: attack
+               * Descricao: ataca outro personagem
+               * Entrada: (Character*) vitima
+            */
+        void attack(Character * victim);
 
-		void setSpeed(int newSpd);
+        /*
+               * Nome: takeItem
+               * Descricao: Adiciona um item ao inventario
+               * Entrada: (Item*) item
+          * Saida: (bool) sucesso?
+            */
+        bool takeItem(Item * item);
 
-		void setDexterity(int newDex);
+        /*
+               * Nome: equip
+               * Descricao: Adiciona um equipamento que estava no inventario
+               * Entrada: (Equipment*) Equipamento
+            */
+        void equip(Equipment * equipment);
 
-		void setConstitution(int newConst);
+        /*
+               * Nome: unequip
+               * Descricao: remove um equipamento que estava equipado
+               * Entrada: (Equipment*) Equipamento
+            */
+        void unequip(Equipment * equipment);
 
-		void addHP(int amount);
+        /*
+               * Nome: removeItem
+               * Descricao: remove um item do inventario
+               * Entrada: (Item*) item
+            */
+        void removeItem(Item * item);
 
-		void addMP(int amount);
+    protected:
 
-		void addXP(int amount);
+        /*
+               * Nome: getAttackPts
+               * Descricao: (Puramente virtual) retorna a quantidade de pontos de ataque
+               * Saida: (int) pontos de ataque
+            */
+        virtual int getAttackPoints() const = 0;
 
-		void resurrect();
+        /*
+               * Nome: getDefensePts
+               * Descricao: (Puramente virtual) retorna a quantidade de pontos de defesa
+               * Saida: (int) pontos de defesa
+            */
+        virtual int getDefensePoints() const = 0;
 
-		/*	Outros metodos	*/
+        /*
+               * Nome: getBaseAttackPts
+               * Descricao: retorna os pontos de ataque base
+               * Saida: (int) pontos de ataque base
+            */
+        int getBaseAttackPoints() const;
 
-		void attack(Character * victim);
-
-		// Ja que myitems eh um atributo private de Character, eh necessario
-		// um metodo para que funcoes externas a classe consigam fazer com que
-		// itens sejam adicionados ao inventario do personagem
-
-		bool takeItem(Item * item);
-
-		bool hasItem(Item * item);
-
-		void equipItem(Item * item);
-
-		void removeItem(Item * item);
-
-		void equipAll();
-
-	protected:
-
-		virtual int getAttackPoints() const = 0;
-
-		virtual int getDefensePoints() const = 0;
-
-		int getBaseAttackPoints() const;
-
-		int getBaseDefensePoints() const;
-
+        /*
+               * Nome: getBaseDefesePts
+               * Descricao: retorna os pontos de defesa base
+               * Saida: (int) pontos de defesa base
+            */
+        int getBaseDefensePoints() const;
 };
 
 #endif

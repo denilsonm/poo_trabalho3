@@ -7,58 +7,151 @@
 
 using namespace std;
 
+/*
+ * Classe Knight
+ *  Representa um personagem do jogo
+*/
 class Knight : public Character{
 
-	protected:
-		int power;
+    protected:
+        int power;
 
-	public:
+    public:
 
-		Knight(string name, int newpower);
+        /*
+               * Nome: Knight (Construtor)
+               * Descricao: Construtor que define os valores iniciais para os atributos da classe
+               * Entrada: (string) nome do personagem, (int) vida, (int) mp, (int) poder
+            */
+        Knight(const string name, int hp, int mp, int newpower);
 
-		void addPower(int add);
+        /*
+               * Nome: addPower
+               * Descricao: Adiciona poder
+               * Entrada: (int) poder
+            */
+        void addPower(int add);
 
-	protected:
+        /*
+               * Nome: getPower
+               * Descricao: retorna o poder
+               * Saida: (int) poder
+            */
+        int getPower() const;
 
-		virtual int getAttackPoints() const;
+    protected:
 
-		virtual int getDefensePoints() const;
+        /*
+               * Nome: getAttackPts
+               * Descricao: retorna a quantidade de pontos de ataque
+               * Saida: (int) pontos de ataque
+            */
+        int getAttackPts() const;
+
+        /*
+               * Nome: getDefensePts
+               * Descricao: retorna a quantidade de pontos de defesa
+               * Saida: (int) pontos de defesa
+            */
+        int getDefensePoints() const;
 };
 
+/*
+ * Classe Wizard
+ *  Representa um personagem do jogo
+*/
 class Wizard : public Character{
 
-	protected:
-		int wisdom;
+    protected:
+        int wisdom;
 
-	public:
+    public:
 
-		Wizard(string name, int newwisdom);
+        /*
+               * Nome: Wizard (Construtor)
+               * Descricao: Construtor que define os valores iniciais para os atributos da classe
+               * Entrada: (string) nome do personagem, (int) vida, (int) mp, (int) sabedoria
+            */
+        Wizard(const string name, int hp, int mp, int newwisdom);
 
-		void addWisdom(int add);
+        /*
+               * Nome: addWisdom
+               * Descricao: Adiciona sabedoria
+               * Entrada: (int) sabedoria
+            */
+        void addWisdom(int add);
 
-	protected:
+        /*
+               * Nome: getWisdom
+               * Descricao: retorna a sabedoria
+               * Saida: (int) sabedoria
+            */
+        int getWisdom() const;
 
-		virtual int getAttackPoints() const;
+    protected:
 
-		virtual int getDefensePoints() const;
+        /*
+               * Nome: getAttackPts
+               * Descricao: retorna a quantidade de pontos de ataque
+               * Saida: (int) pontos de ataque
+            */
+        int getAttackPoints() const;
+
+        /*
+               * Nome: getDefensePts
+               * Descricao: retorna a quantidade de pontos de defesa
+               * Saida: (int) pontos de defesa
+            */
+        int getDefensePoints() const;
 };
 
-class Thief : public Character{
+/*
+ * Classe Archer
+ *  Representa um personagem do jogo
+*/
+class Archer : public Character{
 
-	protected:
-		int stealth;
+    protected:
+        int luck;
 
-	public:
+    public:
 
-		Thief(string name, int newstealth);
+        /*
+               * Nome: Archer (Construtor)
+               * Descricao: Construtor que define os valores iniciais para os atributos da classe
+               * Entrada: (string) nome do personagem, (int) vida, (int) mp, (int) sorte
+            */
+        Archer(const string name, int hp, int mp, int newluck);
 
-		void addStealth(int add);
+        /*
+               * Nome: addLuck
+               * Descricao: Adiciona sorte
+               * Entrada: (int) sorte
+            */
+        void addLuck(int add);
 
-	protected:
+        /*
+               * Nome: getLuck
+               * Descricao: retorna a sorte -> "We're up all night to get lucky"
+               * Saida: (int) sorte
+            */
+        int getLuck() const;
 
-		virtual int getAttackPoints() const;
+    protected:
 
-		virtual int getDefensePoints() const;
+        /*
+               * Nome: getAttackPts
+               * Descricao: retorna a quantidade de pontos de ataque
+               * Saida: (int) pontos de ataque
+            */
+        int getAttackPoints() const;
+
+        /*
+               * Nome: getDefensePts
+               * Descricao: retorna a quantidade de pontos de defesa
+               * Saida: (int) pontos de defesa
+            */
+        int getDefensePoints() const;
 };
 
 #endif

@@ -3,26 +3,29 @@
 
 class GameUtil{
 
-	public:
+    public:
 
-		/*	Funcao checkInterval(int a, int n, int b)
+        /*
+           * Nome: checkInterval
+           * Descricao: (static) Checa se determinado valor 'n' esta no intervalo entre 'a' e 'b'
+           * Entrada: (int) menor valor, (int) valor, (int) maior valor
+         * Saida: (int) valor corrigido
+        */
+        static int checkInterval(int a, int n, int b);
 
-			Se n estiver entre a e b, retorna n. Se n for
-			menor que a, retorna a. Se n for maior que b,\
-			retorna b. Em outras palavras, forca que n
-			esteja no intervalo fechado [a, b]
+        /*    Funcao generateRandom(int a, int b)
 
-		*/
+            Retorna um numero aleatorio entre a e b
 
-		static int checkInterval(int a, int n, int b);
+        */
 
-		/*	Funcao generateRandom(int a, int b)
-
-			Retorna um numero aleatorio entre a e b
-
-		*/
-
-		static int generateRandom(int a, int b);
+        /*
+         * Nome: generateRandom
+         * Descricao: Gera um numero aleatorio entre 'a' e 'b'
+         * Entrada: (int) menor valor, (int) maior valor
+         * Saida: Numero aleatorio gerado
+        */
+        static int generateRandom(int a, int b);
 };
 
 #endif

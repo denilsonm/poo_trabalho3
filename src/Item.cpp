@@ -6,7 +6,7 @@
  * Descricao: Construtor que define os valores iniciais para os atributos da classe
  * Entrada: (string) nome do item, (double) preço
 */
-Item::Item(string name, double price){
+Item::Item(const string name, double price){
     this->name = name;
     this->price = price;
 }

@@ -1,6 +1,6 @@
 CC=g++
 CFLAGS=-std=c++11 -pthread -I include/ -c
-SOURCES=Item.cpp Potion.cpp
+SOURCES=Armor.cpp Character.cpp Characters.cpp Equipment.cpp GameUtil.cpp HealthPotion.cpp Item.cpp ManaPotion.cpp Potion.cpp Weapon.cpp
 OBJECTS=$(addprefix obj/, $(SOURCES:.cpp=.o))
 EXECUTABLE=Trabalho2
 

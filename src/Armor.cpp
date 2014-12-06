@@ -8,7 +8,7 @@
  * Descricao: Construtor que define os valores iniciais para os atributos da classe
  * Entrada: (std::string) nome da armadura, (double) preço, (int) pontos de defesa, (double) peso
 */
-Armor::Armor(std::string name, double price, int defensepts, double weight) : Item(name, price){
+Armor::Armor(const string name, double price, int defensepts, double weight) : Item(name, price){
     // Certifica que os pontos de defesa estão dentro do intervalo permitido
     this->defensepts = GameUtil::checkInterval(1, defensepts, 20);
 

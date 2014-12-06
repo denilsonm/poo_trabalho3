@@ -28,7 +28,7 @@ class Item{
      * Descricao: Construtor que define os valores iniciais para os atributos da classe
      * Entrada: (string) nome do item, (double) preço
     */
-    Item(string name, double price);
+    Item(const string name, double price);
 
     /*
      * Nome: Item (Construtor de copia)
