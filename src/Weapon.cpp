@@ -9,7 +9,7 @@
 */
 Weapon::Weapon(const string name, double price, int attackpts, double range) : Item(name, price){
     // Certifica que os pontos de ataque estão dentro do intervalo permitido
-    this->defensepts = GameUtil::checkInterval(1, defensepts, 20);
+    this->attackpts = GameUtil::checkInterval(1, attackpts, 20);
 
     this->range = range;
 }
@@ -22,6 +22,19 @@ Weapon::Weapon(const string name, double price, int attackpts, double range) : I
 Weapon::Weapon(Weapon & weapon) : Item(weapon){
     attackpts = weapon.attackpts;
     range = weapon.range;
+}
+
+/*
+ * Nome: describe
+ * Descricao: retorna uma string descrevendo o item
+ * Saida: (string) descricao do item
+*/
+virtual string describe() const{
+    ostringstream buffer;
+
+    buffer << this->getName << " ( " << price << " G / " << getAttackPts() << " attack / range: " << range << " m )";
+
+    return buffer.str();  
 }
 
 /*

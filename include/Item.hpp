@@ -42,7 +42,14 @@ class Item{
      * Descricao: Retorna o nome do item
      * Saida: (std::string) nome
     */
-    std::string getName() const;
+    string getName() const;
+
+    /*
+     * Nome: describe
+     * Descricao: retorna uma string descrevendo o item
+     * Saida: (string) descricao do item
+    */
+    virtual string describe() const = 0;
 
     /*
      * Nome: getPrice
@@ -56,7 +63,7 @@ class Item{
      * Descricao: Metodo virtual, retorna o peso do item
      * Saida: (double) peso
     */
-    double Item::getWeight() const;
+    virtual double getWeight() const;
 
     /*
      * Nome: use

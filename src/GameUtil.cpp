@@ -36,6 +36,8 @@ string GameUtil::makeName(string nameType1, string nameType2){
 
   buffer << namebase[nameType1][ GameUtil::generateRandom(0, namebase[nameType1].size()-1) ]
       << " " << namebase[nameType2][ GameUtil::generateRandom(0, namebase[nameType2].size()-1) ]
+
+  return buffer.str();
 }
 
 /*

@@ -32,6 +32,13 @@ class Weapon : public Item, public Equipment{
     Weapon(Weapon & weapon);
 
     /*
+     * Nome: describe
+     * Descricao: retorna uma string descrevendo o item
+     * Saida: (string) descricao do item
+    */
+    virtual string describe() const = 0;
+
+    /*
      * Nome: getDefensePts
      * Descricao: retorna os pontos de defesa, nao usado nessa classe
      * Saida: (int) 0

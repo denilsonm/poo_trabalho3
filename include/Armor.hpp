@@ -32,6 +32,13 @@ class Armor : public Item, public Equipment{
     Armor(Armor & armor);
 
     /*
+     * Nome: describe
+     * Descricao: retorna uma string descrevendo o item
+     * Saida: (string) descricao do item
+    */
+    virtual string describe() const = 0;
+
+    /*
      * Nome: getDefensePts
      * Descricao: retorna os pontos de defesa da armadura
      * Saida: (int) pontos de defesa

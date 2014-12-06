@@ -27,6 +27,19 @@ Armor::Armor(Armor & armor) : Item(armor){
 }
 
 /*
+ * Nome: describe
+ * Descricao: retorna uma string descrevendo o item
+ * Saida: (string) descricao do item
+*/
+virtual string describe() const{
+    ostringstream buffer;
+
+    buffer << this->getName << " ( " << price << " G / " << getDefensePts() << " defense / weights " << weight << " )";
+
+    return buffer.str();  
+}
+
+/*
  * Nome: getDefensePts
  * Descricao: retorna os pontos de defesa da armadura
  * Saida: (int) pontos de defesa

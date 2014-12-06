@@ -54,4 +54,6 @@ int main(){
 	cout << "\nYou have received the following items:\n\n"
 
 	//
+
+	cout << "May the bravest of all win!";
 }
