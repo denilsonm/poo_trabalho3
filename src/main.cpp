@@ -1,5 +1,6 @@
 #include <vector>
 #include <string>
+#include <cstdlib>
 
 #include "GameUtil.hpp"
 #include "Tournament.hpp"
@@ -8,36 +9,27 @@ using namespace std;
 
 int main(){
 
+	srand(time(NULL));
+
 	// Dando dados para o gerador de nomes
 
-	vector<string> adjectives();
+	GameUtil::pushName("adjective", "Powerful");
+	GameUtil::pushName("adjective", "Chaotic");
+	GameUtil::pushName("adjective", "Elven");
+	GameUtil::pushName("adjective", "Dwarven");
+	GameUtil::pushName("adjective", "Mighty");
 
-	adjectives.push_back("Powerful");
-	adjectives.push_back("Chaotic");
-	adjectives.push_back("Elven");
-	adjectives.push_back("Dwarven");
-	adjectives.push_back("Mighty");
+	GameUtil::pushName("bow", "Bow");
+	GameUtil::pushName("bow", "Crossbow");
+	GameUtil::pushName("bow", "Slingshot");
 
-	vector<string> bowNames()
+	GameUtil::pushName("staff", "Staff");
+	GameUtil::pushName("staff", "Scepter");
+	GameUtil::pushName("staff", "Rod");
 
-	bowNames.push_back("Bow");
-	bowNames.push_back("Crossbow");
+	GameUtil::pushName("name", "Urist");
 
-	vector<string> staffNames()
-
-	staffNames.push_back("Staff");
-	staffNames.push_back("Scepter");
-	staffNames.push_back("Rod");
-
-	vector<string> swordNames()
-
-	swordNames.push_back("Sword");
-	swordNames.push_back("Broadsword");
-	swordNames.push_back("Rapier");
-
-	vector<string> names();
-
-	vector<string> surnames();
+	GameUtil::pushName("surname", "McDwarf");
 
 	// Introducao do jogo
 

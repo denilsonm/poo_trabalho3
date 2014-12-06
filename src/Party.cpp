@@ -5,16 +5,16 @@
 #include <queue>
 #include <cstdlib>
 
-#include "Team.hpp"
+#include "Party.hpp"
 
 using namespace std;
 
 	/*	Construtor	*/
 
-Team::Team(string teamName, Color teamColor){
+Party::Party(string partyName, Color partyColor){
 
-	name = teamName;
-	color = teamColor;
+	name = partyName;
+	color = partyColor;
 
 	win = 0;
 	lose = 0;
@@ -24,7 +24,7 @@ Team::Team(string teamName, Color teamColor){
 
 	/*	Destrutor	*/
 
-Team::~Team(){
+Party::~Party(){
 
 	int i;
 
@@ -36,11 +36,11 @@ Team::~Team(){
 
 	/*	Metodos getters	*/
 
-string Team::getName(){
+string Party::getName(){
 	return name;
 }
 
-string Team::getResults(){
+string Party::getResults(){
 
 	ostringstream buffer;
 
@@ -49,11 +49,11 @@ string Team::getResults(){
 	return buffer.str();
 }
 
-string Team::toString(){
+string Party::toString(){
 
 	ostringstream buffer;
 
-	buffer << "Team name: " << name << ", color: ";
+	buffer << "Party name: " << name << ", color: ";
 
 	switch(color){
 		case blue:
@@ -81,7 +81,7 @@ string Team::toString(){
 	return buffer.str();
 }
 
-double Team::getPoints(){
+double Party::getPoints(){
 	double buffer = 0;
 	int i;
 
@@ -92,31 +92,31 @@ double Team::getPoints(){
 	return buffer/(double)characters.size();
 }
 
-void Team::resolveBattle(Team & team){
-	if(getPoints() > team.getPoints()){
+void Party::resolveBattle(Party & party){
+	if(getPoints() > party.getPoints()){
 		win++;
-	}else if(getPoints() == team.getPoints()){
+	}else if(getPoints() == party.getPoints()){
 		draw++;
 	}else{
 		lose++;
 	}
 }
 
-void Team::addChar(Character * newchar){
+void Party::addChar(Character * newchar){
 
 	if(searchChar(newchar->getName()) == NULL)
 		characters.push_back(newchar);
 
 }
 
-void Team::removeChar(int pos){
+void Party::removeChar(int pos){
 
 	if(pos < characters.size() && pos >= 0)
 		characters.erase(characters.begin() + pos);
 
 }
 
-void Team::removeChar(Character * toRemove){
+void Party::removeChar(Character * toRemove){
 
 	int i;
 
@@ -129,7 +129,7 @@ void Team::removeChar(Character * toRemove){
 
 }
 
-Character * Team::searchChar(string name){
+Character * Party::searchChar(string name){
 
 	int i;
 
@@ -142,7 +142,7 @@ Character * Team::searchChar(string name){
 
 }
 
-queue<Character *> Team::shuffleCharacters(){
+queue<Character *> Party::shuffleCharacters(){
 	int i, j, characterNumber = characters.size();
 
 	/*	Gera um numero primo maior que o numero de characters no time	*/
@@ -182,7 +182,7 @@ queue<Character *> Team::shuffleCharacters(){
 	return ret;
 }
 
-Character * Team::getRandomAliveCharacter(){
+Character * Party::getRandomAliveCharacter(){
 	int i;
 
 	while(isAlive()){
@@ -194,7 +194,7 @@ Character * Team::getRandomAliveCharacter(){
 	return NULL;
 }
 
-bool Team::isAlive(){
+bool Party::isAlive(){
 	int i;
 
 	for(i=0; i<characters.size(); i++){
@@ -205,7 +205,7 @@ bool Team::isAlive(){
 	return false;
 }
 
-void Team::resurrectCharacters(){
+void Party::resurrectCharacters(){
 	int i;
 
 	for(i=0; i<characters.size(); i++){

@@ -10,7 +10,7 @@
 
 //using namespace std;
 
-class Team{
+class Party{
 
 	private:
 
@@ -31,11 +31,11 @@ class Team{
 
 		/*	Construtor	*/
 
-		Team(string, Color);
+		Party(string, Color);
 
 		/*	Destrutor	*/
 
-		~Team();
+		~Party);
 
 		/*	Outros	*/
 
@@ -47,7 +47,7 @@ class Team{
 
 		double getPoints();
 
-		void resolveBattle(Team &);	// Nao existe razao para resolveBattle retornar um inteiro
+		void resolveBattle(Party &);	// Nao existe razao para resolveBattle retornar um inteiro
 
 		void addChar(Character *);
 
