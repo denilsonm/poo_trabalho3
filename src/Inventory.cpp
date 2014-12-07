@@ -267,7 +267,10 @@ int Inventory::getEquipmentAmount() const{
 */
 bool Inventory::equip(Equipment * equipment){
     if(!isEquipped(equipment) && isInInventory(equipment->getName()))
-        equipments.push_back(equipment);
+    {
+        if(getEquippedAmount(equipment) < equipment->MaximumEquipped())
+            equipments.push_back(equipment);
+    }
 }
 
 /*
@@ -285,6 +288,25 @@ bool Inventory::unequip(Equipment * equipment){
     }
 
     return false;
+}
+
+int Inventory::getEquippedAmount(string equipmentType) const{
+
+        int i, equipped = 0;
+
+            for(i=0; i<equipments.size(); i++){
+                        if(equipmentType == typeid(*equipments[i]).name())
+                                        equipped++;
+                            }
+
+                return equipped;
+
+}
+
+int Inventory::getEquippedAmount(Equipment * equipment) const{
+
+        return getEquippedAmount(typeid(*equipment).name());
+
 }
 
 /*

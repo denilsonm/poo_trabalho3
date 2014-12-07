@@ -174,6 +174,10 @@ class Inventory{
     */
         bool unequip(Equipment * equipment);
 
+        int getEquippedAmount(string equipmentType) const;
+
+        int getEquippedAmount(Equipment * equipment) const;
+
     /*
        * Nome: isEquipped
        * Descricao: checa se o item ja esta equipado
@@ -196,6 +200,8 @@ class Inventory{
      * Entrada: (int) soma dos pesos
     */
         int getWeight() const;
+
+        operator string() const;
 };
 
 #endif
