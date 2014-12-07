@@ -38,7 +38,7 @@ class GameUtil{
           * Entrada: (string) tipo do primeiro nome, (string) tipo do segundo nome
           * Saida: Nome aleatorio gerado
         */
-        string makeName(string nameType1, string nameType2);
+        static string makeName(const string nameType1, const string nameType2);
 
         /*
            * Nome: checkInterval

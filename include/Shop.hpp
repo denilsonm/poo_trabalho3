@@ -3,10 +3,11 @@
 
 #include <type_traits>
 #include <string>
+#include <vector>
 
 #include "Item.hpp"
 
-using namespace string;
+using namespace std;
 
 template <typename T>
 class Shop{
@@ -23,7 +24,7 @@ class Shop{
     void buy(Character *buyer, int id);
     void sell(Character *seller, int id);
 
-    string operator string() const;
+    operator string() const;
 };
 
 #endif

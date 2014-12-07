@@ -70,7 +70,7 @@ int Armor::MaximumEquipped() const{
  * Saida: void
 */
 void Armor::use(Character & character){
-    character.equip(this);
+    character.getInventory().equip(this);
 }
 
 string Armor::getName() const{

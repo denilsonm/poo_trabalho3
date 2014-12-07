@@ -221,6 +221,16 @@ Inventory & Character::getInventory(){
     return inventory;
 }
 
+/*
+ * Nome: resurrect
+ * Descricao: Retorna os pontos de vida do personagem para o valor máximo
+ * Saida: void
+*/
+void resurrect()
+{
+    //TODO
+}
+
 // Nas classes filho de Character, a funcao getAttackPoints e
 // getDefensePoints sempre sao a soma de algum atributo especifico
 // da classe filho com pontos base que podem ser calculados apenas com

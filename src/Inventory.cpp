@@ -191,7 +191,7 @@ void Inventory::removeItem(string itemName){
     int i;
 
     for(i=0; i<items.size(); i++){
-        if(items[i].first->getName() == itemName){
+        if(items[i]->getName() == itemName){
             delete items[i];
 
             items.erase(items.begin()+i);
@@ -242,7 +242,7 @@ void Inventory::removeItem(Item * item){
  * Entrada: (int) id do equipamento
  * Saida: (Equipment *) ponteiro para o equipamento
 */
-Equipment * searchEquipment(int id) const{
+Equipment * Inventory::searchEquipment(int id) const{
     if(id < equipments.size() && id >= 0)
         return equipments[id];
     else
@@ -254,7 +254,7 @@ Equipment * searchEquipment(int id) const{
  * Descricao: Retorna o numero de itens equipados
  * Saida: (int) numero de itens equipados
 */
-int getEquipmentAmount() const{
+int Inventory::getEquipmentAmount() const{
     return equipments.size();
 }
 
@@ -264,8 +264,8 @@ int getEquipmentAmount() const{
    * Entrada: (Equipment*) Equipamento
    * Saida: (bool) obteve sucesso?
 */
-bool equip(Equipment * equipment){
-    if(!isEquipped(equipment) && isInInventory((Item *)equipment!=NULL)
+bool Inventory::equip(Equipment * equipment){
+    if(!isEquipped(equipment) && isInInventory(equipment->getName()))
         equipments.push_back(equipment);
 }
 
@@ -275,7 +275,7 @@ bool equip(Equipment * equipment){
    * Entrada: (Equipment*) Equipamento
    * Saida: (bool) obteve sucesso?
 */
-bool unequip(Equipment * equipment){
+bool Inventory::unequip(Equipment * equipment){
     for(int i=0; i<equipments.size(); i++){
         if(equipments[i]==equipment){
             equipments.erase(equipments.begin()+i);
@@ -292,7 +292,7 @@ bool unequip(Equipment * equipment){
    * Entrada: (Equipment*) Equipamento
    * Saida: (bool) retorna o resultado
 */
-bool isEquipped(Equipment * equipment) const{
+bool Inventory::isEquipped(Equipment * equipment) const{
     for(int i=0; i<equipments.size(); i++){
         if(equipments[i]==equipment){
             return true;
@@ -309,11 +309,10 @@ bool isEquipped(Equipment * equipment) const{
 */
 int Inventory::getWeight() const{
 
-    int i, w = 0;
+    int w = 0;
 
-    for(i=0; i<items.size(); i++){
-        if(items[i].second)
-            w += items[i].first->getWeight();
+    for(int i=0; i<items.size(); i++){
+        w += items[i]->getWeight();
     }
 
     return w;
@@ -321,7 +320,4 @@ int Inventory::getWeight() const{
 }
 
 Inventory::operator string() const{
-
-    if(equip)
-
 }

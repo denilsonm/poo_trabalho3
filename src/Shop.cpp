@@ -1,20 +1,25 @@
 #include "Shop.hpp"
 
+#include <vector>
+#include <string>
 #include <sstream>
 
-Shop::Shop(int numOfProducts)
+template <typename T>
+Shop<T>::Shop(int numOfProducts)
 {
     for(unsigned int i = 0; i < numOfProducts; i++)
         stock.push_back(new T());
 }
 
-Shop::~Shop()
+template <typename T>
+Shop<T>::~Shop()
 {
     for(unsigned int i = 0; i < stock.size(); i++)
         delete stock.at(i);
 }
 
-void Shop::buy(Character *buyer, int id)
+template <typename T>
+void Shop<T>::buy(Character *buyer, int id)
 {
     if(id < 0 || id >= stock.size())
         return;
@@ -27,7 +32,8 @@ void Shop::buy(Character *buyer, int id)
     }
 }
 
-void Shop::sell(Character *seller, int id)
+template <typename T>
+void Shop<T>::sell(Character *seller, int id)
 {
     if(id < 0 || id >= seller.getInventory().getItemAmount()
         return;
@@ -36,7 +42,8 @@ void Shop::sell(Character *seller, int id)
     seller->getInventory().removeItem(id);
 }
 
-string Shop::operator string() const
+template <typename T>
+Shop<T>::operator string() const
 {
     ostringstream buffer;
 

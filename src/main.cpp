@@ -4,12 +4,15 @@
 
 #include "GameUtil.hpp"
 #include "Character.hpp"
-#include "Knight.hpp"
-#include "Wizard.hpp"
-#include "Archer.hpp"
+#include "Characters.hpp"
 #include "Tournament.hpp"
 #include "Color.hpp"
+#include "Armor.hpp"
+#include "Weapon.hpp"
+#include "Potion.hpp"
 #include "Shop.hpp"
+
+#define SHOP_PRODUCTS 5 // Quantidade de itens em cada loja
 
 using namespace std;
 
@@ -55,10 +58,10 @@ int main(){
     do{
         cout << "Pick your class (1 - Knight/2 - Wizard/3 - Archer): " << endl;
         cin >> playerClass;
-    }while(playerClass < 1 || playerClass > 3)
+    }while(playerClass < 1 || playerClass > 3);
 
     // Cria o personagem do jogador
-    Character player;
+    Character *player;
 
     switch(playerClass)
     {
@@ -86,13 +89,14 @@ int main(){
     // Cria um vetor de parties participantes do torneio
     vector<Party*> partyList;
 
-    Color partyColor = blue;
+    int partyColor = blue;
 
     // Cria o time do jogador
-    Party party = new Party(partyName, partyColor++);
+    Party *party = new Party(partyName, (Color)partyColor);
+    partyColor++;
 
     // Coloca o jogador no time
-    party.addChar(player);
+    party->addChar(player);
     
     // Cria os NPC's do time do personagem do jogador
     for(unsigned int i = 0; i < 2; i++)
@@ -102,15 +106,15 @@ int main(){
         switch(npcClass)
         {
             case 1: // Knight
-                party.addChar(new Knight(GameUtil::makeName("name", "surname"), 100, 0, 1));
+                party->addChar(new Knight(GameUtil::makeName("name", "surname"), 100, 0, 1));
                 break;
 
             case 2: // Wizard
-                party.addChar(new Wizard(GameUtil::makeName("name", "surname"), 70, 50, 1));
+                party->addChar(new Wizard(GameUtil::makeName("name", "surname"), 70, 50, 1));
                 break;
 
             case 3: // Archer
-                party.addChar(new Archer(GameUtil::makeName("name", "surname"), 80, 0, 1));
+                party->addChar(new Archer(GameUtil::makeName("name", "surname"), 80, 0, 1));
                 break;
 
             default:
@@ -124,7 +128,8 @@ int main(){
     // Cria os times inimigos
     for(unsigned int i = 0; i < 7; i++)
     {
-        party = new Party(GameUtil::makeName("TODO", "TODO"), partyColor++);
+        party = new Party(GameUtil::makeName("TODO", "TODO"), (Color)partyColor);
+        partyColor++;
 
         // Cria os NPC's dos outros times
         for(unsigned int i = 0; i < 3; i++)
@@ -134,13 +139,13 @@ int main(){
             switch(npcClass)
             {
                 case 1: // Knight
-                    party.addChar(new Knight(GameUtil::makeName("name", "surname"), 100, 0, 1));
+                    party->addChar(new Knight(GameUtil::makeName("name", "surname"), 100, 0, 1));
                     break;
                 case 2: // Wizard
-                    party.addChar(new Wizard(GameUtil::makeName("name", "surname"), 70, 50, 1));
+                    party->addChar(new Wizard(GameUtil::makeName("name", "surname"), 70, 50, 1));
                     break;
                 case 3: // Archer
-                    party.addChar(new Archer(GameUtil::makeName("name", "surname"), 80, 0, 1));
+                    party->addChar(new Archer(GameUtil::makeName("name", "surname"), 80, 0, 1));
                     break;
                 default:
                     break;
@@ -162,7 +167,7 @@ int main(){
     Shop<Potion> potionShop(SHOP_PRODUCTS);
     
     // Inicia o torneio
-    while(tournament.getWinner() == NULL && player.isAlive())
+    while(tournament.getWinner() == NULL && player->isAlive())
     {
         // Abre as lojas para o jogador
 
@@ -296,7 +301,7 @@ int main(){
         tournament.startRound();
     }
 
-    if(tournmant.getWinner() == player)
+    if(player->isAlive())
         cout << "TODO<congratulations here>" << endl;
     else
         cout << "TODO<game over here>" << endl;
@@ -306,7 +311,6 @@ int main(){
     {
         delete partyList.at(i);
     }
-    partyList.erase();
 
     // Deleta a memoria usada pelo jogador
     delete player;

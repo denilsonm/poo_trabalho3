@@ -138,12 +138,19 @@ class Character{
             */
         void attack(Character * victim);
 
-        /*
+            /*
                * Nome: getInventory
                * Descricao: retorna o inventario do character, por referencia
                * Entrada: (Inventory &) inventario do character
             */
         Inventory & getInventory();
+
+            /*
+               * Nome: resurrect
+               * Descricao: Retorna os pontos de vida do personagem para o valor máximo
+               * Saida: void
+            */
+        void resurrect();
 
     protected:
 

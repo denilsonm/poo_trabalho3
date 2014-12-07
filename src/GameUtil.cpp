@@ -31,7 +31,7 @@ void GameUtil::pushName(string type, string element){
   * Entrada: (string) tipo do primeiro nome, (string) tipo do segundo nome
   * Saida: Nome aleatorio gerado
 */
-string GameUtil::makeName(string nameType1, string nameType2){
+string GameUtil::makeName(const string nameType1, const string nameType2){
   if(namebase.find(nameType1)==namebase.end() || namebase.find(nameType2)==namebase.end())
     return "";
 
