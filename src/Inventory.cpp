@@ -173,6 +173,8 @@ bool Inventory::isInInventory(const Item * ptr) const{
  * Saida: (bool) o item foi adicionado?
 */
 bool Inventory::insertItem(Item * newItem){
+    if(newItem == NULL)
+        return false;
 
     if(items.size() < spaces){
         items.push_back(newItem);
@@ -193,6 +195,8 @@ void Inventory::removeItem(string itemName){
 
     for(i=0; i<items.size(); i++){
         if(items[i]->getName() == itemName){
+            unequip(dynamic_cast<Equipment*>(items[i]));
+
             delete items[i];
 
             items.erase(items.begin()+i);
@@ -210,6 +214,9 @@ void Inventory::removeItem(string itemName){
 void Inventory::removeItem(int id){
 
     if(0 <= id && id < items.size()){
+
+        unequip(dynamic_cast<Equipment*>(items[id]));
+
         delete items[id];
 
         items.erase(items.begin()+id);
@@ -228,8 +235,11 @@ void Inventory::removeItem(Item * item){
 
     for(i=0; i<items.size(); i++){
         if(items[i] == item){
-            delete items[i];
 
+            unequip(dynamic_cast<Equipment*>(item));
+
+            delete item;
+    
             items.erase(items.begin()+i);
             return;
         }
@@ -266,6 +276,9 @@ int Inventory::getEquipmentAmount() const{
    * Saida: (bool) obteve sucesso?
 */
 bool Inventory::equip(Equipment * equipment){
+    if(equipment == NULL)
+        return false;
+
     if(!isEquipped(equipment) && isInInventory(equipment->getName()))
     {
         if(getEquippedAmount(equipment) < equipment->MaximumEquipped())

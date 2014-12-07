@@ -156,7 +156,9 @@ int main(){
 
     cout << "\nYou have received the following items:\n\n";
 
-    cout << "Pick your party name: " << endl;
+    cout << (string)player->getInventory() << "\n\n";
+
+    cout << "Pick your party name: ";
     
     string partyName;
     cin >> partyName;
@@ -204,7 +206,7 @@ int main(){
     Party *party;
     for(unsigned int i = 0; i < 7; i++)
     {
-        party = new Party(GameUtil::makeName("TODO", "TODO"), (Color)partyColor);
+        party = new Party(GameUtil::makeName("adjective", "teamnames"), (Color)partyColor);
         partyColor++;
 
         // Cria os NPC's dos outros times
@@ -273,7 +275,7 @@ int main(){
         while(playerChoice != 3)
         {
             playerChoice = 0;
-            cout << "Hello my friend, I'm Barnabas and I sell the best armors of this game. Do you want to:\n\n\t1 - Buy\n\t2 - Sell\n\t3 - Exit\n\nYour option: " << endl;
+            cout << "Hello my friend, I'm Barnabas and I sell the best armors of this game. Do you want to:\n\n\t1 - Buy\n\t2 - Sell\n\t3 - Exit\n\nYour option: ";
             cin >> playerChoice;
 
             bool success;
@@ -305,7 +307,7 @@ int main(){
                         break;
                     }
 
-                    cout << endl;
+                    cout << endl << endl << "Your option: ";
                     cin >> playerChoice;
 
                     success = armorShop.sell(player, playerChoice);
@@ -336,7 +338,7 @@ int main(){
         while(playerChoice != 3)
         {
             playerChoice = 0;
-            cout << "Hi brave hero! My name is Asdrubal, the Blacksmith, and my weapons are the best in town. Do you want to:\n\n\t1 - Buy\n\t2 - Sell\n\t3 - Exit\n\nYour option: " << endl;
+            cout << "Hi brave hero! My name is Asdrubal, the Blacksmith, and my weapons are the best in town. Do you want to:\n\n\t1 - Buy\n\t2 - Sell\n\t3 - Exit\n\nYour option: ";
             cin >> playerChoice;
 
             bool success;
@@ -367,7 +369,7 @@ int main(){
                         break;
                     }
 
-                    cout << endl;
+                    cout << endl << endl << "Your option: ";
                     cin >> playerChoice;
 
                     success = weaponShop.sell(player, playerChoice);
@@ -397,7 +399,7 @@ int main(){
         while(playerChoice != 3)
         {
             playerChoice = 0;
-            cout << "Hey! You can call me Leslisson, the Wizard. I sell potions for the challengers in the Tournament. Do you want to\n\n\t1 - Buy\n\t2 - Sell\n\t3 - Exit\n\nYour option: " << endl;
+            cout << "Hey! You can call me Leslisson, the Wizard. I sell potions for the challengers in the Tournament. Do you want to\n\n\t1 - Buy\n\t2 - Sell\n\t3 - Exit\n\nYour option: ";
             cin >> playerChoice;
 
             bool success;
@@ -429,7 +431,7 @@ int main(){
                         break;
                     }
 
-                    cout << endl;
+                    cout << endl << endl << "Your option: ";
                     cin >> playerChoice;
 
                     success = potionShop.sell(player, playerChoice);
@@ -455,17 +457,28 @@ int main(){
         while(playerChoice != 3){
         playerChoice = 0;
         
-            cout << "\n\n\nDo you want to 1 - Equip Item, 2 - Unequip Item or 3 - Battle?:   ";
+            cout << "\n\n\nDo you want to:\n\n\t1 - Equip Item\n\t2 - Unequip Item\n\t3 - Battle\n\nYour option: ";
             cin >> playerChoice;
             cout << endl << endl;
+
+            int optionAmount = 0;
 
             switch(playerChoice){
                 case 1:
                     
                     for(unsigned int i = 0; i < player->getInventory().getItemAmount(); i++) {
                         if(dynamic_cast<Weapon*>(player->getInventory().searchItem(i)) != NULL || dynamic_cast<Armor*>(player->getInventory().searchItem(i)) != NULL)
-                            if(!player->getInventory().isEquipped(player->getInventory().searchItem(i)->getName()))
+                            if(!player->getInventory().isEquipped(player->getInventory().searchItem(i)->getName())){
                                 cout << i << " - " << player->getInventory().searchItem(i)->getName() << endl;
+                                optionAmount++;
+                            }
+                    }
+
+                    if(optionAmount == 0){
+                        cout << "Type anything to continue: ";
+                        cin >> playerChoice;
+
+                        break;
                     }
 
                     cin >> playerChoice;
@@ -475,9 +488,17 @@ int main(){
                     
                     break;
                 case 2:
-
-                    for(unsigned int i = 0; i < player->getInventory().getEquipmentAmount(); i++)
+                    for(unsigned int i = 0; i < player->getInventory().getEquipmentAmount(); i++){
                         cout << i << " - " << player->getInventory().searchEquipment(i)->getName() << endl;
+                        optionAmount++;
+                    }
+
+                    if(optionAmount == 0){
+                        cout << "Type anything to continue: ";
+                        cin >> playerChoice;
+
+                        break;
+                    }
 
                     cin >> playerChoice;
 
@@ -498,9 +519,10 @@ int main(){
     }
 
     if(tournament.getWinner() == playerParty)
-        cout << "TODO<congratulations here>" << endl;
+        cout << "Congratulations. But the princess which you were going to rescue but didn't know it is in another castle. Yeah, should've mentioned that. Sorry.\n" << endl;
     else
-        cout << "TODO<game over here>" << endl;
+        cout << "Well, you're dead now. Bye.\n" << endl;
+    
 
     // Deleta as parties que participaram do torneio
     for(unsigned int i = 0; i < partyList.size(); i++)
