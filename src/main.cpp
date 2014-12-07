@@ -29,18 +29,72 @@ int main(){
     GameUtil::pushName("adjective", "Elven");
     GameUtil::pushName("adjective", "Dwarven");
     GameUtil::pushName("adjective", "Mighty");
+    GameUtil::pushName("adjective", "Pristine");
+    GameUtil::pushName("adjective", "Dirty");
+    GameUtil::pushName("adjective", "Old");
+    GameUtil::pushName("adjective", "Infernal");
+    GameUtil::pushName("adjective", "Torn Apart");
+    GameUtil::pushName("adjective", "Flying");
+    GameUtil::pushName("adjective", "Swimming");
+    GameUtil::pushName("adjective", "Winged");
+    GameUtil::pushName("adjective", "Flaming");
+    GameUtil::pushName("adjective", "Frozen");
+    GameUtil::pushName("adjective", "Beautiful");
+    GameUtil::pushName("adjective", "Marvelous");
 
-    GameUtil::pushName("bow", "Bow");
-    GameUtil::pushName("bow", "Crossbow");
-    GameUtil::pushName("bow", "Slingshot");
+    GameUtil::pushName("weapon", "Bow");
+    GameUtil::pushName("weapon", "Crossbow");
+    GameUtil::pushName("weapon", "Slingshot");
+    GameUtil::pushName("weapon", "Staff");
+    GameUtil::pushName("weapon", "Scepter");
+    GameUtil::pushName("weapon", "Rod");
+    GameUtil::pushName("weapon", "Broadsword");
+    GameUtil::pushName("weapon", "Flamberge");
+    GameUtil::pushName("weapon", "Rapier");
+    GameUtil::pushName("weapon", "Ice Pick");
 
-    GameUtil::pushName("staff", "Staff");
-    GameUtil::pushName("staff", "Scepter");
-    GameUtil::pushName("staff", "Rod");
+    GameUtil::pushName("armor", "Hat");
+    GameUtil::pushName("armor", "Monocle");
+    GameUtil::pushName("armor", "False Mustache");
+    GameUtil::pushName("armor", "Iron Mail");
+    GameUtil::pushName("armor", "Shoes");
+    GameUtil::pushName("armor", "Boots");
+    GameUtil::pushName("armor", "Leggings");
+    GameUtil::pushName("armor", "Shield");
+
+    GameUtil::pushName("manapot", "of Mana");
+    GameUtil::pushName("healthpot", "of Vitality");
+
+    GameUtil::pushName("potion", "Saliva");
+    GameUtil::pushName("potion", "Essence");
+    GameUtil::pushName("potion", "Elixir");
+    GameUtil::pushName("potion", "Potion");
+    GameUtil::pushName("potion", "Extract");
 
     GameUtil::pushName("name", "Urist");
+    GameUtil::pushName("name", "Excelsa");
+    GameUtil::pushName("name", "Asdrubal");
+    GameUtil::pushName("name", "Rodney");
+    GameUtil::pushName("name", "Farmacio");
+    GameUtil::pushName("name", "Fridundino");
+    GameUtil::pushName("name", "Gravitolina");
+    GameUtil::pushName("name", "Horinando");
+    GameUtil::pushName("name", "Lindulfo");
+    GameUtil::pushName("name", "Reimar");
+    GameUtil::pushName("name", "Rolando");
+    GameUtil::pushName("name", "Telebentino");
 
     GameUtil::pushName("surname", "McDwarf");
+    GameUtil::pushName("surname", "Mothram");
+    GameUtil::pushName("surname", "Fid");
+    GameUtil::pushName("surname", "Datan");
+    GameUtil::pushName("surname", "Istam");
+    GameUtil::pushName("surname", "Thuveg");
+    GameUtil::pushName("surname", "Monon");
+    GameUtil::pushName("surname", "Tashem");
+    GameUtil::pushName("surname", "Urvag");
+
+    GameUtil::pushName("surname", "Tharnas");
 
     // Introducao do jogo
 
@@ -80,8 +134,9 @@ int main(){
             break;
     }
 
+    player->getInventory().addGold(60.0);
+
     cout << "\nYou have received the following items:\n\n";
-    // TODO start kit
 
     cout << "Pick your party name: " << endl;
     
@@ -167,22 +222,22 @@ int main(){
     Shop<Armor> armorShop;
     for(unsigned int i = 0; i < SHOP_PRODUCTS; i++)
     {
-        armorShop.addProduct(new Armor(GameUtil::makeName("TODO", "TODO"), GameUtil::generateDouble(10.0, 30.0), GameUtil::generateRandom(1, 20), GameUtil::generateDouble(1.0, 20.0)));
+        armorShop.addProduct(new Armor(GameUtil::makeName("adjective", "armor"), GameUtil::generateDouble(10.0, 30.0), GameUtil::generateRandom(1, 20), GameUtil::generateDouble(1.0, 20.0)));
     }
 
     Shop<Weapon> weaponShop;
     for(unsigned int i = 0; i < SHOP_PRODUCTS; i++)
     {
-        weaponShop.addProduct(new Weapon(GameUtil::makeName("TODO", "TODO"), GameUtil::generateDouble(15.0, 40.0), GameUtil::generateRandom(1, 20)));
+        weaponShop.addProduct(new Weapon(GameUtil::makeName("adjective", "weapon"), GameUtil::generateDouble(15.0, 40.0), GameUtil::generateRandom(1, 20)));
     }
 
     Shop<Potion> potionShop;
     for(unsigned int i = 0; i < SHOP_PRODUCTS; i++)
     {
         if(GameUtil::generateRandom(1, 10) > 5)
-            potionShop.addProduct((Potion*)new ManaPotion(GameUtil::makeName("TODO", "TODO"), GameUtil::generateDouble(1.0, 8.0), GameUtil::generateRandom(1, 50)));
+            potionShop.addProduct((Potion*)new ManaPotion(GameUtil::makeName("potion", "manapot"), GameUtil::generateDouble(1.0, 8.0), GameUtil::generateRandom(1, 50)));
         else
-            potionShop.addProduct((Potion*)new HealthPotion(GameUtil::makeName("TODO", "TODO"), GameUtil::generateDouble(2.0, 8.0), GameUtil::generateRandom(1, 50)));
+            potionShop.addProduct((Potion*)new HealthPotion(GameUtil::makeName("potion", "healthpot"), GameUtil::generateDouble(2.0, 8.0), GameUtil::generateRandom(1, 50)));
     }
     
     // Inicia o torneio
@@ -198,8 +253,10 @@ int main(){
 
         while(playerChoice != 3)
         {
-            cout << "Hello my friend, I'm Barnabas and I sell the best armors of this game. Do you want to 1 - Buy, 2 - Sell or 3 - Exit?" << endl;
+            cout << "Hello my friend, I'm Barnabas and I sell the best armors of this game. Do you want to:\n\n\t1 - Buy\n\t2 - Sell\n\t3 - Exit\n\nYour option: " << endl;
             cin >> playerChoice;
+
+            bool success;
 
             switch(playerChoice)
             {
@@ -207,27 +264,45 @@ int main(){
                     cout << (string)armorShop << endl;
                     cin >> playerChoice;
 
-                    armorShop.buy(player, playerChoice);
+                    success = armorShop.buy(player, playerChoice);
+
+                    if(success){
+                        cout << "Ha! Now THAT was a great deal!\n\n";
+                    }else{
+                        cout << "Sorry sir, you may not buy that item.\n\n";
+                    }
 
                     break;
                 case 2: // O jogador escolhe vender um item do seu inventario
                     cout << "Barnabas buys everything for a fair price. What do you want to sell?" << endl << endl;
-                    
-                    for(unsigned int i = 0; i < player->getInventory().getItemAmount(); i++) 
-                    {
-                        cout << i << " - " << player->getInventory().searchItem(i)->getName() << endl;
+
+                    cout << (string)(player->getInventory());
+
+                    if(player->getInventory().getItemAmount() == 0){
+                        cout << "Type anything to continue: ";
+                        cin >> playerChoice;
+
+                        break;
                     }
 
                     cout << endl;
                     cin >> playerChoice;
 
-                    armorShop.sell(player, playerChoice);
+                    success = armorShop.sell(player, playerChoice);
+
+                    if(success){
+                        cout << "Thanks, sir!\n\n";
+                    }else{
+                        cout << "Sorry sir, you may not sell that item.\n\n";
+                    }
 
                     break;
                 case 3: // O jogador escolhe sair da loja
-                    cout << "Goodbye fella!" << endl;
+                    cout << "Goodbye fella!\n\n";
                     break;
                 default:
+                    cout << "Man, you must be deaf...\n\n";
+
                     break;
             }
         }
@@ -240,36 +315,54 @@ int main(){
 
         while(playerChoice != 3)
         {
-            cout << "Hi brave hero! My name is Asdrubal, the Blacksmith, and my weapons are the best in town. Do you want to 1 - Buy, 2 - Sell or 3 - Exit?" << endl;
+            cout << "Hi brave hero! My name is Asdrubal, the Blacksmith, and my weapons are the best in town. Do you want to:\n\n\t1 - Buy\n\t2 - Sell\n\t3 - Exit\n\nYour option: " << endl;
             cin >> playerChoice;
+
+            bool success;
 
             switch(playerChoice)
             {
                 case 1: // O jogador escolhe comprar um item da loja
-                    cout << (string)armorShop << endl;
+                    cout << (string)weaponShop << endl;
                     cin >> playerChoice;
 
-                    armorShop.buy(player, playerChoice);
+                    success = weaponShop.buy(player, playerChoice);
+
+                    if(success)
+                        cout << "Take this! It's too dangerous to go alone!\n\n";
+                    else
+                        cout << "Huh, you dummy. You can't do that.\n\n";
 
                     break;
                 case 2: // O jogador escolhe vender um item do seu inventario
                     cout << "Another seller? This way I will be a poor!" << endl << endl;
-                    
-                    for(unsigned int i = 0; i < player->getInventory().getItemAmount(); i++) 
-                    {
-                        cout << i << " - " << player->getInventory().searchItem(i)->getName() << endl;
+
+                    cout << (string)(player->getInventory());
+
+                    if(player->getInventory().getItemAmount() == 0){
+                        cout << "Type anything to continue: ";
+                        cin >> playerChoice;
+
+                        break;
                     }
 
                     cout << endl;
                     cin >> playerChoice;
 
-                    armorShop.sell(player, playerChoice);
+                    success = weaponShop.sell(player, playerChoice);
+
+                    if(success){
+                        cout << "And never come back again!\n\n";
+                    }else{
+                        cout << "You fool! You can't do that!\n\n";
+                    }
 
                     break;
                 case 3: // O jogador escolhe sair da loja
-                    cout << "May the lucky be with you." << endl;
+                    cout << "May the (get) lucky be with you.\n\n";
                     break;
                 default:
+                    cout << "Ah, these heroes nowadays...\n\n";
                     break;
             }
         }
@@ -282,36 +375,55 @@ int main(){
 
         while(playerChoice != 3)
         {
-            cout << "Hey! You can call me Leslisson, the Wizard. I sell potions for the challengers in the Tournament. Do you want to 1 - Buy, 2 - Sell or 3 - Exit?" << endl;
+            cout << "Hey! You can call me Leslisson, the Wizard. I sell potions for the challengers in the Tournament. Do you want to\n\n\t1 - Buy\n\t2 - Sell\n\t3 - Exit\n\nYour option: " << endl;
             cin >> playerChoice;
+
+            bool success;
 
             switch(playerChoice)
             {
                 case 1: // O jogador escolhe comprar um item da loja
-                    cout << (string)armorShop << endl;
+                    cout << (string)potionShop << endl;
                     cin >> playerChoice;
 
-                    armorShop.buy(player, playerChoice);
+                    success = potionShop.buy(player, playerChoice);
+
+                    if(success){
+                        cout << "May your life be full of rabbits!\n\n";
+                    }else{
+                        cout << "You may not buy that.\n\n";
+                    }
 
                     break;
                 case 2: // O jogador escolhe vender um item do seu inventario
                     cout << "One hand washes another..." << endl << endl;
-                    
-                    for(unsigned int i = 0; i < player->getInventory().getItemAmount(); i++) 
-                    {
-                        cout << i << " - " << player->getInventory().searchItem(i)->getName() << endl;
+
+                    cout << (string)(player->getInventory());
+
+                    if(player->getInventory().getItemAmount() == 0){
+                        cout << "Type anything to continue: ";
+                        cin >> playerChoice;
+
+                        break;
                     }
 
                     cout << endl;
                     cin >> playerChoice;
 
-                    armorShop.sell(player, playerChoice);
+                    success = potionShop.sell(player, playerChoice);
+
+                    if(success){
+                        cout << "May hair always grow in your foot!\n\n";
+                    }else{
+                        cout << "You may not sell that.\n\n";
+                    }
 
                     break;
                 case 3: // O jogador escolhe sair da loja
-                    cout << "Break a leg!" << endl;
+                    cout << "Break a leg!\n\n";
                     break;
                 default:
+                    cout << "No, you may not choose a fourth option.\n\n";
                     break;
             }
         }
