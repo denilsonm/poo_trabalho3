@@ -77,6 +77,11 @@ string Armor::getName() const{
     return Item::getName();
 }
 
+// Retorna um clone da classe
+Item * Armor::clone(){
+    return new Armor(*this);
+}
+
 // Retorna uma descricao do item
 Armor::operator string() const{
     ostringstream buffer;

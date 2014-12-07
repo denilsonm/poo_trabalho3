@@ -69,6 +69,9 @@ class Weapon : public Item, public Equipment{
 
     // Retorna uma descricao do item
     operator string() const;
+
+    // Retorna um clone da classe
+    virtual Item * clone();
 };
 
 #endif

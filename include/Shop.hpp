@@ -27,7 +27,7 @@ class Shop{
         if(buyer->getInventory().getGold() >= stock[id]->getPrice() && buyer->getInventory().getAvailableSpace() > 0){
             buyer->getInventory().addGold(-stock[id]->getPrice());
 
-            buyer->getInventory().insertItem(stock[id]);
+            buyer->getInventory().insertItem(stock[id]->clone());
 
             return true;
         }else{

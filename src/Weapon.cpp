@@ -72,3 +72,8 @@ Weapon::operator string() const{
 
     return buffer.str();  
 }
+
+// Retorna um clone da classe
+Item * Weapon::clone(){
+    return new Weapon(*this);
+}

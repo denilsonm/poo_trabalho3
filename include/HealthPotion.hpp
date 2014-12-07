@@ -28,6 +28,9 @@ class HealthPotion : public Potion{
 
     // Retorna uma descricao do item
     operator string() const;
+
+    // Retorna um clone da classe
+    virtual Item * clone();
 };
 
 #endif

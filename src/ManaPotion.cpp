@@ -26,6 +26,11 @@ void ManaPotion::use(Character & character){
     character.getInventory().removeItem(getName());
 }
 
+// Retorna um clone da classe
+Item * ManaPotion::clone(){
+    return new ManaPotion(*this);
+}
+
 // Retorna uma descricao do item
 ManaPotion::operator string() const{
     ostringstream buffer;

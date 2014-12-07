@@ -25,6 +25,11 @@ void HealthPotion::use(Character & character){
     character.getInventory().removeItem(getName());
 }
 
+// Retorna um clone da classe
+Item * HealthPotion::clone(){
+    return new HealthPotion(*this);
+}
+
 // Retorna uma descricao do item
 HealthPotion::operator string() const{
     ostringstream buffer;

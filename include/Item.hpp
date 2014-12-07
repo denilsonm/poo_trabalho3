@@ -68,6 +68,9 @@ class Item{
     */
     virtual void use(Character & character) = 0;
 
+    // Retorna um clone da classe
+    virtual Item * clone() = 0;
+
     virtual operator string() const = 0;
 };
 

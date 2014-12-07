@@ -70,6 +70,9 @@ class Armor : public Item, public Equipment{
 
     string getName() const;
 
+    // Retorna um clone da classe
+    virtual Item * clone();
+
     // Retorna uma descricao do item
     operator string() const;
 };
