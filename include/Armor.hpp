@@ -44,7 +44,7 @@ class Armor : public Item, public Equipment{
      * Descricao: retorna os pontos de ataque da armadura, nao usado nessa classe
      * Saida: (int) 0
     */
-    virtual int getAttackPts() const;
+    int getAttackPts() const;
 
     /*
      * Nome: getWeight
@@ -58,7 +58,7 @@ class Armor : public Item, public Equipment{
      * Descricao: retorna a quantidade máxima desse item que podem ser equipados
      * Saida: (int) quantidade máxima
     */
-    virtual int MaximumEquipped() const;
+    int MaximumEquipped() const;
 
     /*
      * Nome: use

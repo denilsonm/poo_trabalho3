@@ -188,8 +188,6 @@ class Inventory{
      * Entrada: (int) soma dos pesos
     */
         int getWeight() const;
-
-    operator string() const;
 };
 
 #endif

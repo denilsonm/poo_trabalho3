@@ -64,6 +64,13 @@ class Character{
         int getHP() const;
 
         /*
+               * Nome: getMP
+               * Descricao: Retorna os pontos de magia
+               * Saída: (int) mp
+            */
+        int getMP() const;
+
+        /*
                * Nome: isAlive
                * Descricao: Retorna se o personagem esta vivo
                * Saída: (bool) esta vivo?

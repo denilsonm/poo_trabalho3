@@ -35,7 +35,7 @@ class Weapon : public Item, public Equipment{
      * Descricao: retorna os pontos de defesa, nao usado nessa classe
      * Saida: (int) 0
     */
-    int getDefensePts()const ;
+    int getDefensePts() const;
 
     /*
      * Nome: getAttackPts
