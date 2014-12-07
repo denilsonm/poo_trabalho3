@@ -331,6 +331,5 @@ int main(){
         delete partyList.at(i);
     }
 
-    // Deleta a memoria usada pelo jogador
-    delete player;
+    return 0;
 }
