@@ -1,6 +1,8 @@
 #include <string>
 
 #include "Characters.hpp"
+#include "Weapon.hpp"
+#include "Armor.hpp"
 
 using namespace std;
 
@@ -13,6 +15,15 @@ using namespace std;
 */
 Knight::Knight(string name, int hp, int mp, int newpower) : Character(name, hp, mp){
     power = newpower;
+
+    Weapon *sword = new Weapon("Simple Short Sword", 5.0, 1);
+    Armor *cloth = new Armor("Leather Loincloth", 5.0, 1, 2.0);
+
+    getInventory().insertItem(sword);
+    getInventory().insertItem(cloth);
+
+    getInventory().equip(sword);
+    getInventory().equip(cloth);
 }
 
 /*
@@ -60,6 +71,15 @@ int Knight::getDefensePoints() const{
 */
 Wizard::Wizard(string name, int hp, int mp, int newwisdom) : Character(name, hp, mp){
     wisdom = newwisdom;
+ 
+    Weapon *staff = new Weapon("Simple Glittery Staff", 5.0, 1);
+    Armor *cloak = new Armor("Leather Cloak", 5.0, 1, 1.0);
+
+    getInventory().insertItem(staff);
+    getInventory().insertItem(cloak);
+
+    getInventory().equip(staff);
+    getInventory().equip(cloak);
 }
 
 /*
@@ -98,7 +118,7 @@ int Wizard::getDefensePoints() const{
     return Character::getBaseDefensePoints() + wisdom/2;
 }
 
-/* ============== CLASSE THIEF ============== */
+/* ============== CLASSE ARHCER ============== */
 
 /*
  * Nome: Archer (Construtor)
@@ -107,6 +127,15 @@ int Wizard::getDefensePoints() const{
 */
 Archer::Archer(string name, int hp, int mp, int newluck) : Character(name, hp, mp){
     luck = newluck;
+    
+    Weapon *bow = new Weapon("Wooden Short Bow", 5.0, 1);
+    Armor *coat = new Armor("Leather Coat", 5.0, 1, 2.0);
+
+    getInventory().insertItem(bow);
+    getInventory().insertItem(coat);
+
+    getInventory().equip(bow);
+    getInventory().equip(coat);
 }
 
 /*
