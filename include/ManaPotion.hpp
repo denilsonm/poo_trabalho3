@@ -17,14 +17,7 @@ class ManaPotion : public Potion{
      * Entrada: (string) nome da pocao, (double) preço, (int) poder de restauracao de mana
     */
     ManaPotion(const string name, double price, int restorepts);
-
-    /*
-     * Nome: describe
-     * Descricao: retorna uma string descrevendo o item
-     * Saida: (string) descricao do item
-    */
-    virtual string describe() const;
-
+    
     /*
      * Nome: use
      * Descricao: usa a pocao
@@ -32,6 +25,9 @@ class ManaPotion : public Potion{
      * Saida: (void)
     */
     void use(Character & character);
+
+    // Retorna uma descricao do item
+    operator string() const;
 };
 
 #endif

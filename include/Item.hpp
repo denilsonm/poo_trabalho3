@@ -42,7 +42,7 @@ class Item{
      * Descricao: Retorna o nome do item
      * Saida: (string) nome
     */
-    string getName() const;
+    virtual string getName() const;
 
     /*
      * Nome: describe

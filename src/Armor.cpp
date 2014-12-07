@@ -28,19 +28,6 @@ Armor::Armor(Armor & armor) : Item(armor){
 }
 
 /*
- * Nome: describe
- * Descricao: retorna uma string descrevendo o item
- * Saida: (string) descricao do item
-*/
-string Armor::describe() const{
-    ostringstream buffer;
-
-    buffer << this->getName() << " ( " << this->getPrice() << " G / " << this->getDefensePts() << " defense / weights " << this->weight << " )";
-
-    return buffer.str();  
-}
-
-/*
  * Nome: getDefensePts
  * Descricao: retorna os pontos de defesa da armadura
  * Saida: (int) pontos de defesa
@@ -84,4 +71,17 @@ int Armor::MaximumEquipped() const{
 */
 void Armor::use(Character & character){
     character.equip(this);
+}
+
+string Armor::getName() const{
+    return Item::getName();
+}
+
+// Retorna uma descricao do item
+Armor::operator string() const{
+    ostringstream buffer;
+
+    buffer << this->getName() << " ( " << this->getPrice() << " G / " << this->getDefensePts() << " defense / weights " << this->weight << " )";
+
+    return buffer.str();  
 }

@@ -162,6 +162,13 @@ class Character{
         void unequip(Equipment * equipment);
 
         /*
+               * Nome: isEquipped
+               * Descricao: checa se o item ja esta equipado
+               * Entrada: (Equipment*) Equipamento
+            */
+        bool isEquipped(Equipment * equipment);
+
+        /*
                * Nome: removeItem
                * Descricao: remove um item do inventario
                * Entrada: (Item*) item

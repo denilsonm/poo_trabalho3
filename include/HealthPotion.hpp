@@ -19,19 +19,15 @@ class HealthPotion : public Potion{
     HealthPotion(string name, double price, int restorepts);
 
     /*
-     * Nome: describe
-     * Descricao: retorna uma string descrevendo o item
-     * Saida: (string) descricao do item
-    */
-    virtual string describe() const;
-
-    /*
      * Nome: use
      * Descricao: usa a pocao
      * Entrada: (Character&) personagem usando a pocao
      * Saida: (void)
     */
     void use(Character & character);
+
+    // Retorna uma descricao do item
+    operator string() const;
 };
 
 #endif

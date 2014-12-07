@@ -25,19 +25,6 @@ Weapon::Weapon(Weapon & weapon) : Item(weapon){
 }
 
 /*
- * Nome: describe
- * Descricao: retorna uma string descrevendo o item
- * Saida: (string) descricao do item
-*/
-string Weapon::describe() const{
-    ostringstream buffer;
-
-    buffer << this->getName() << " ( " << this->getPrice() << " G / " << this->getAttackPts() << " attack / range: " << this->range << " m )";
-
-    return buffer.str();  
-}
-
-/*
  * Nome: getDefensePts
  * Descricao: retorna os pontos de defesa, nao usado nessa classe
  * Saida: (int) 0
@@ -81,4 +68,17 @@ int Armor::MaximumEquipped() const{
 */
 void Armor::use(Character & character){
     target.equip(this);
+}
+
+string Weapon::getName() const{
+    return Item::getName();
+}
+
+// Retorna uma descricao do item
+Weapon::operator string() const{
+    ostringstream buffer;
+
+    buffer << this->getName() << " ( " << this->getPrice() << " G / " << this->getAttackPts() << " attack / range: " << this->range << " m )";
+
+    return buffer.str();  
 }

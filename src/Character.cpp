@@ -235,7 +235,7 @@ bool Character::takeItem(Item * item){
 void Character::equip(Equipment * equipment){
 
     // Se o item estiver no inventorio do character, tenta equipa-lo
-    if(inventory.isInInventory(equipment->getName())){
+    if(inventory.isInInventory(equipment->getName()) && !isEquipped(equipment)){
         equipments.push_back(equipment);
     }
 
@@ -256,6 +256,22 @@ void Character::unequip(Equipment * equipment){
             return;
         }
     }
+}
+
+/*
+       * Nome: isEquipped
+       * Descricao: checa se o item ja esta equipado
+       * Entrada: (Equipment*) Equipamento
+    */
+bool isEquipped(Equipment * equipment){
+    int i;
+
+    for(i=0; i<equipments.size(); i++){
+        if(equipments[i]==equipment)
+            return true;
+    }
+
+    return false;
 }
 
 /*

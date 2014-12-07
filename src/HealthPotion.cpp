@@ -21,12 +21,8 @@ void HealthPotion::use(Character & character){
     character.removeItem(getName());
 }
 
-/*
- * Nome: describe
- * Descricao: retorna uma string descrevendo o item
- * Saida: (string) descricao do item
-*/
-string HealthPotion::describe() const{
+// Retorna uma descricao do item
+HealthPotion::operator string() const{
     ostringstream buffer;
 
     buffer << this->getName << " ( " << this->getPrice() << " G / Restores " << restorepts << " HP )";
