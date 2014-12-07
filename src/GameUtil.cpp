@@ -67,3 +67,13 @@ int GameUtil::checkInterval(int a, int n, int b){
 int GameUtil::generateRandom(int a, int b){
     return rand()%(b-a+1)+a;
 }
+
+/*
+ * Nome: generateDouble
+ * Descricao: Gera um numero aleatorio entre 'a' e 'b'
+ * Entrada: (double) menor valor, (double) maior valor
+ * Saida: Numero aleatorio gerado (double)
+*/
+static int generateDouble(int a, int b){
+    return ((double)rand())/(b-a)+a;
+}

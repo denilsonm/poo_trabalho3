@@ -55,6 +55,14 @@ class GameUtil{
          * Saida: Numero aleatorio gerado
         */
         static int generateRandom(int a, int b);
+
+        /*
+         * Nome: generateDouble
+         * Descricao: Gera um numero aleatorio entre 'a' e 'b'
+         * Entrada: (double) menor valor, (double) maior valor
+         * Saida: Numero aleatorio gerado (double)
+        */
+        static int generateDouble(int a, int b);
 };
 
 #endif
