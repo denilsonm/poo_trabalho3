@@ -22,14 +22,16 @@ class GameUtil{
 
         static map<string, vector<string> > namebase;
 
+    public:
+
         /*
             Comandos que potencialmente possam ser acessados ao mesmo tempo
-            podem usar esse mutex global para evitar problemas
+            podem usar esse mutex global para evitar problemas. Assume-se que
+            o usuario nao sera estupido, e portanto nao havera problemas
+            em deixar print_mutex public.
         */
 
         static mutex print_mutex;
-
-    public:
 
         /*
            * Nome: pushName

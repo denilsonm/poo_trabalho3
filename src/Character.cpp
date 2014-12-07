@@ -201,22 +201,37 @@ void Character::attack(Character * victim){
         // Miss: multiplicador 0 de dano
 
         multiplier = 0;
+
+        lock_guard<mutex> block_threads_until_finish_this_job(GameUtil::print_mutex);
         cout << getName() << " tries to attack " << victim->getName() << " and misses.\n";
     }else if(critchance + misschance > chance){
         // Critical strike: multiplicador 2 de dano
 
         multiplier = 2;
+        lock_guard<mutex> block_threads_until_finish_this_job(GameUtil::print_mutex);
         cout << getName() << " hits " << victim->getName() << "'s weakest spot and does " << damage*2 << " damage.\n";
     }else{
         // Ataque normal
 
+        lock_guard<mutex> block_threads_until_finish_this_job(GameUtil::print_mutex);
         cout << getName() << " attacks " << victim->getName() << " and does " << damage << " damage.\n";
     }
 
     victim->HP -= GameUtil::checkInterval(1, damage*multiplier, victim->HP);
+
+    // A cada ataque, ha uma pequena chance do jogador ganhar experiencia.
+
+    if(rand()%100==42)
+        addXP(2);
     
     if(!victim->isAlive()){
-        cout << victim->getName() << " died!\n";
+        double goldAmount = victim->getInventory().getGold();
+
+        getInventory().addGold(goldAmount);
+        victim->getInventory().addGold(-goldAmount);
+
+        lock_guard<mutex> block_threads_until_finish_this_job(GameUtil::print_mutex);
+        cout << victim->getName() << " died!\n" << getName() << " got " << goldAmount << " gold!\n";
     }
 }
 
