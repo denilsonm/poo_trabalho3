@@ -12,7 +12,7 @@ using namespace std;
  *  Representa uma poção no jogo
 */
 class Potion : public Item{
-    private:
+    protected:
     int restorepts;
 
     public:

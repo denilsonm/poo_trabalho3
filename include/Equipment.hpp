@@ -1,6 +1,10 @@
 #ifndef EQUIPMENT_H
 #define EQUIPMENT_H
 
+#include <string>
+
+using namespace std;
+
 /*
         Interface Equipment
 */

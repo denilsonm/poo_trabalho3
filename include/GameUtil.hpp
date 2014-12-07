@@ -32,12 +32,13 @@ class GameUtil{
         static void pushName(string type, string element);
 
         /*
-         * Nome: makeName
-         * Descricao: Gera um nome aleatorio pela composicao de elementos aleatorios de firstNames e secondNames
-         * Entrada: (vector<string> &) primeiro nome, (vector<string> &) segundo nome
-         * Saida: Nome aleatorio gerado
+          * Nome: makeName
+          * Descricao: Gera um nome aleatorio pela composicao de elementos aleatorios de nomes de tipo nameType1 e nameType2
+          Os nomes sao extraidos do respectivo vector no map namebase.
+          * Entrada: (string) tipo do primeiro nome, (string) tipo do segundo nome
+          * Saida: Nome aleatorio gerado
         */
-         static string makeName(vector<string> & firstNames, vector<string> & secondNames);
+        string makeName(string nameType1, string nameType2);
 
         /*
            * Nome: checkInterval

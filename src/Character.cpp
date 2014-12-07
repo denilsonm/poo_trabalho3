@@ -217,71 +217,8 @@ void Character::attack(Character * victim){
     }
 }
 
-/*
- * Nome: takeItem
- * Descricao: Adiciona um item ao inventario
- * Entrada: (Item*) item
- * Saida: (bool) sucesso?
-*/
-bool Character::takeItem(Item * item){
-    return inventory.insertItem(item);
-}
-
-/*
- * Nome: equip
- * Descricao: Adiciona um equipamento que estava no inventario
- * Entrada: (Equipment*) Equipamento
-*/
-void Character::equip(Equipment * equipment){
-
-    // Se o item estiver no inventorio do character, tenta equipa-lo
-    if(inventory.isInInventory(equipment->getName()) && !isEquipped(equipment)){
-        equipments.push_back(equipment);
-    }
-
-}
-
-/*
- * Nome: unequip
- * Descricao: remove um equipamento que estava equipado
- * Entrada: (Equipment*) Equipamento
-*/
-void Character::unequip(Equipment * equipment){
-
-    for(unsigned int i = 0; i < equipments.size(); i++)
-    {
-        if(equipments.at(i) == equipment)
-        {
-            equipments.erase(equipments.begin() + i);
-            return;
-        }
-    }
-}
-
-/*
-       * Nome: isEquipped
-       * Descricao: checa se o item ja esta equipado
-       * Entrada: (Equipment*) Equipamento
-    */
-bool isEquipped(Equipment * equipment){
-    int i;
-
-    for(i=0; i<equipments.size(); i++){
-        if(equipments[i]==equipment)
-            return true;
-    }
-
-    return false;
-}
-
-/*
- * Nome: removeItem
- * Descricao: remove um item do inventario
- * Entrada: (Item*) item
-*/
-void Character::removeItem(Item * item){
-    inventory.removeItem(item);
-
+Inventory & Character::getInventory(){
+    return inventory;
 }
 
 // Nas classes filho de Character, a funcao getAttackPoints e
@@ -302,10 +239,10 @@ int Character::getBaseDefensePoints() const{
     double def = 0.5*(double)constitution + 0.3*(double)dexterity + 0.2*(double)speed;
 
     for(i=0; i<inventory.getItemAmount(); i++){
-        Item * currentItem = inventory.searchItem(i);
+        Equipment * currentEquip = inventory.searchEquipment(i);
 
-        if(inventory.isEquipped(currentItem))
-            def += (double)currentItem->getDefensePoints();
+        if(inventory.isEquipped(currentEquip))
+            def += (double)currentEquip->getDefensePts();
     }
 
     def = def*(double)XP/2.0;
@@ -321,11 +258,11 @@ int Character::getBaseAttackPoints() const{
     int i;
     int atk = 0.5*(double)strength + 0.3*(double)dexterity + 0.2*(double)speed;
 
-    for(i=0; i<inventory.getItemAmount(); i++){
-        Item * currentItem = inventory.searchItem(i);
+    for(i=0; i<inventory.getEquipmentAmount(); i++){
+        Equipment * currentEquip = inventory.searchEquipment(i);
 
-        if(inventory.isEquipped(currentItem))
-            atk += (double)currentItem->getAttackPoints();
+        if(inventory.isEquipped(currentEquip))
+            atk += (double)currentEquip->getAttackPts();
     }
 
     atk = atk*(double)XP/3.0;

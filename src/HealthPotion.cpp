@@ -1,5 +1,9 @@
+#include <sstream>
+
 #include "HealthPotion.hpp"
 #include "Character.hpp"
+
+using namespace std;
 
 /*
  * Nome: HealthPotion (Construtor)
@@ -16,16 +20,16 @@ HealthPotion::HealthPotion(const string name, double price, int restorepts) : Po
  * Saida: (void)
 */
 void HealthPotion::use(Character & character){
-    character.addHP(getDefensePts());
+    character.addHP(restorepts);
 
-    character.removeItem(getName());
+    character.getInventory().removeItem(getName());
 }
 
 // Retorna uma descricao do item
 HealthPotion::operator string() const{
     ostringstream buffer;
 
-    buffer << this->getName << " ( " << this->getPrice() << " G / Restores " << restorepts << " HP )";
+    buffer << this->getName() << " ( " << this->getPrice() << " G / Restores " << restorepts << " HP )";
 
     return buffer.str();  
 }

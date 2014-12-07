@@ -27,7 +27,6 @@ class Character{
         string name;
 
         Inventory inventory;
-        vector<Equipment*> equipments;
 
         int HP;
         int MP;
@@ -140,40 +139,11 @@ class Character{
         void attack(Character * victim);
 
         /*
-               * Nome: takeItem
-               * Descricao: Adiciona um item ao inventario
-               * Entrada: (Item*) item
-          * Saida: (bool) sucesso?
+               * Nome: getInventory
+               * Descricao: retorna o inventario do character, por referencia
+               * Entrada: (Inventory &) inventario do character
             */
-        bool takeItem(Item * item);
-
-        /*
-               * Nome: equip
-               * Descricao: Adiciona um equipamento que estava no inventario
-               * Entrada: (Equipment*) Equipamento
-            */
-        void equip(Equipment * equipment);
-
-        /*
-               * Nome: unequip
-               * Descricao: remove um equipamento que estava equipado
-               * Entrada: (Equipment*) Equipamento
-            */
-        void unequip(Equipment * equipment);
-
-        /*
-               * Nome: isEquipped
-               * Descricao: checa se o item ja esta equipado
-               * Entrada: (Equipment*) Equipamento
-            */
-        bool isEquipped(Equipment * equipment);
-
-        /*
-               * Nome: removeItem
-               * Descricao: remove um item do inventario
-               * Entrada: (Item*) item
-            */
-        void removeItem(Item * item);
+        Inventory & getInventory();
 
     protected:
 

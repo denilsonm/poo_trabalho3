@@ -42,14 +42,14 @@ class Knight : public Character{
     protected:
 
         /*
-               * Nome: getAttackPts
+               * Nome: getAttackPoints
                * Descricao: retorna a quantidade de pontos de ataque
                * Saida: (int) pontos de ataque
             */
-        int getAttackPts() const;
+        int getAttackPoints() const;
 
         /*
-               * Nome: getDefensePts
+               * Nome: getDefensePoints
                * Descricao: retorna a quantidade de pontos de defesa
                * Saida: (int) pontos de defesa
             */
@@ -91,14 +91,14 @@ class Wizard : public Character{
     protected:
 
         /*
-               * Nome: getAttackPts
+               * Nome: getAttackPoints
                * Descricao: retorna a quantidade de pontos de ataque
                * Saida: (int) pontos de ataque
             */
         int getAttackPoints() const;
 
         /*
-               * Nome: getDefensePts
+               * Nome: getDefensePoints
                * Descricao: retorna a quantidade de pontos de defesa
                * Saida: (int) pontos de defesa
             */
@@ -140,14 +140,14 @@ class Archer : public Character{
     protected:
 
         /*
-               * Nome: getAttackPts
+               * Nome: getAttackPoints
                * Descricao: retorna a quantidade de pontos de ataque
                * Saida: (int) pontos de ataque
             */
         int getAttackPoints() const;
 
         /*
-               * Nome: getDefensePts
+               * Nome: getDefensePoints
                * Descricao: retorna a quantidade de pontos de defesa
                * Saida: (int) pontos de defesa
             */

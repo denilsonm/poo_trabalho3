@@ -61,6 +61,7 @@ void Inventory::addGold(double amount){
 
     if(gold < 0){
         gold = 0;
+    }
 }
 
 /*
@@ -150,6 +151,21 @@ bool Inventory::isInInventory(const string itemName) const{
 }
 
 /*
+ * Nome: isInInventory
+ * Descricao: Verifica se o item esta no inventario
+ * Entrada: (Item *) ponteiro para o item
+ * Saida: (bool) esta no inventario?
+*/
+bool Inventory::isInInventory(const Item * ptr) const{
+
+    for(int i=0; i<items.size(); i++){
+        if(items[i]==ptr)
+            return true;
+    }
+    return false;
+}
+
+/*
  * Nome: insertItem
  * Descricao: Insere um item no inventario
  * Entrada: (Item*) item
@@ -188,6 +204,21 @@ void Inventory::removeItem(string itemName){
 /*
  * Nome: removeItem
  * Descricao: Remove um item do inventario
+ * Entrada: (int) id do item
+*/
+void Inventory::removeItem(int id){
+
+    if(0 <= id && id < items.size()){
+        delete items[id];
+
+        items.erase(items.begin()+id);
+    }
+
+}
+
+/*
+ * Nome: removeItem
+ * Descricao: Remove um item do inventario
  * Entrada: (Item*) item
 */
 void Inventory::removeItem(Item * item){
@@ -206,18 +237,69 @@ void Inventory::removeItem(Item * item){
 }
 
 /*
- * Nome: removeItem
- * Descricao: Remove um item do inventario
- * Entrada: (int) id do item
+ * Nome: searchEquipment
+ * Descricao: Retorna um equipamento do inventario
+ * Entrada: (int) id do equipamento
+ * Saida: (Equipment *) ponteiro para o equipamento
 */
-void Inventory::removeItem(int id){
+Equipment * searchEquipment(int id) const{
+    if(id < equipments.size() && id >= 0)
+        return equipments[id];
+    else
+        return NULL;
+}
 
-    if(0 <= id && id < items.size()){
-        delete items[id];
+/*
+ * Nome: getEquipmentAmount
+ * Descricao: Retorna o numero de itens equipados
+ * Saida: (int) numero de itens equipados
+*/
+int getEquipmentAmount() const{
+    return equipments.size();
+}
 
-        items.erase(items.begin()+id);
+/*
+   * Nome: equip
+   * Descricao: Adiciona um equipamento que estava no inventario
+   * Entrada: (Equipment*) Equipamento
+   * Saida: (bool) obteve sucesso?
+*/
+bool equip(Equipment * equipment){
+    if(!isEquipped(equipment) && isInInventory((Item *)equipment!=NULL)
+        equipments.push_back(equipment);
+}
+
+/*
+   * Nome: unequip
+   * Descricao: remove um equipamento que estava equipado
+   * Entrada: (Equipment*) Equipamento
+   * Saida: (bool) obteve sucesso?
+*/
+bool unequip(Equipment * equipment){
+    for(int i=0; i<equipments.size(); i++){
+        if(equipments[i]==equipment){
+            equipments.erase(equipments.begin()+i);
+            return true;
+        }
     }
 
+    return false;
+}
+
+/*
+   * Nome: isEquipped
+   * Descricao: checa se o item ja esta equipado
+   * Entrada: (Equipment*) Equipamento
+   * Saida: (bool) retorna o resultado
+*/
+bool isEquipped(Equipment * equipment) const{
+    for(int i=0; i<equipments.size(); i++){
+        if(equipments[i]==equipment){
+            return true;
+        }
+    }
+
+    return false;
 }
 
 /*
@@ -235,5 +317,11 @@ int Inventory::getWeight() const{
     }
 
     return w;
+
+}
+
+Inventory::operator string() const{
+
+    if(equip)
 
 }

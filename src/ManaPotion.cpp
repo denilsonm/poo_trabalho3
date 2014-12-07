@@ -21,16 +21,16 @@ ManaPotion::ManaPotion(const string name, double price, int restorepts) : Potion
  * Saida: (void)
 */
 void ManaPotion::use(Character & character){
-    character.addMP(getDefensePts());
+    character.addMP(restorepts);
 
-    character.removeItem(getName());
+    character.getInventory().removeItem(getName());
 }
 
 // Retorna uma descricao do item
 ManaPotion::operator string() const{
     ostringstream buffer;
 
-    buffer << this->getName << " ( " << this->getPrice() << " G / Restores " << restorepts << " MP )";
+    buffer << this->getName() << " ( " << this->getPrice() << " G / Restores " << restorepts << " MP )";
 
     return buffer.str();  
 }

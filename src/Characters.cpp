@@ -105,8 +105,8 @@ int Wizard::getDefensePoints() const{
  * Descricao: Construtor que define os valores iniciais para os atributos da classe
  * Entrada: (string) nome do personagem, (int) vida, (int) mp, (int) sorte
 */
-Archer::Thief(string name, int hp, int mp, int newstealth) : Character(name, hp, mp){
-    stealth = newstealth;
+Archer::Archer(string name, int hp, int mp, int newluck) : Character(name, hp, mp){
+    luck = newluck;
 }
 
 /*
@@ -114,8 +114,8 @@ Archer::Thief(string name, int hp, int mp, int newstealth) : Character(name, hp,
  * Descricao: Adiciona sorte
  * Entrada: (int) sorte
 */
-void Archer::addStealth(int add){
-    stealth += add;
+void Archer::addLuck(int add){
+    luck += add;
 }
 
 /*
@@ -133,7 +133,7 @@ int Archer::getLuck() const{
  * Saida: (int) pontos de ataque
 */
 int Archer::getAttackPoints() const{
-    return Character::getBaseAttackPoints() + stealth;
+    return Character::getBaseAttackPoints() + luck;
 }
 
 /*
