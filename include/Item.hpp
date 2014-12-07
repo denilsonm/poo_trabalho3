@@ -67,6 +67,8 @@ class Item{
      * Saida: (void)
     */
     virtual void use(Character & character) = 0;
+
+    virtual operator string() const = 0;
 };
 
 #endif

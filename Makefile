@@ -15,5 +15,8 @@ obj/%.o: src/%.cpp
 run: $(EXECUTABLE)
 	./$(EXECUTABLE)
 
+valgrind: $(EXECUTABLE)
+	@valgrind --leak-check=full ./$(EXECUTABLE)
+
 clean:
 	rm -f obj/*.o ./$(EXECUTABLE)

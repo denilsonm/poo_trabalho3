@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <typeinfo>
 #include <iostream>
+#include <sstream>
 
 #include "Inventory.hpp"
 
@@ -292,9 +293,25 @@ bool Inventory::unequip(Equipment * equipment){
    * Entrada: (Equipment*) Equipamento
    * Saida: (bool) retorna o resultado
 */
-bool Inventory::isEquipped(Equipment * equipment) const{
+bool Inventory::isEquipped(const Equipment * equipment) const{
     for(int i=0; i<equipments.size(); i++){
         if(equipments[i]==equipment){
+            return true;
+        }
+    }
+
+    return false;
+}
+
+/*
+   * Nome: isEquipped
+   * Descricao: checa se o item ja esta equipado
+   * Entrada: (string) nome do equipamento
+   * Saida: (bool) retorna o resultado
+*/
+bool Inventory::isEquipped(const string name) const{
+    for(int i=0; i<equipments.size(); i++){
+        if(equipments[i]->getName()==name){
             return true;
         }
     }
@@ -320,4 +337,27 @@ int Inventory::getWeight() const{
 }
 
 Inventory::operator string() const{
+    ostringstream buffer;
+
+    buffer << "Gold: " << gold << "\nSpace: " << items.size() << " / " << spaces << "\n\n";
+
+    if(items.size()==0)
+        buffer << "\tInventory is empty!";
+    else{
+        int i;
+
+        for(i=0; i<items.size(); i++){
+            if(i!=0)
+                buffer << "\n";
+
+            buffer << "\t" << i << " - ";
+
+            if(isEquipped(items[i]->getName()))
+                buffer << "(EQUIPPED) ";
+
+            buffer << (string)*(items[i]);
+        }
+    }
+
+    return buffer.str();
 }

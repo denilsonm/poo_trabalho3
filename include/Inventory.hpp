@@ -180,7 +180,15 @@ class Inventory{
        * Entrada: (Equipment*) Equipamento
        * Saida: (bool) retorna o resultado
     */
-        bool isEquipped(Equipment * equipment) const;
+        bool isEquipped(const Equipment * equipment) const;
+
+    /*
+       * Nome: isEquipped
+       * Descricao: checa se o item ja esta equipado
+       * Entrada: (string) nome do equipamento
+       * Saida: (bool) retorna o resultado
+    */
+        bool isEquipped(const string name) const;
 
     /*
      * Nome: getWeight

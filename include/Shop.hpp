@@ -20,25 +20,29 @@ class Shop{
         stock.push_back(product);
     }
 
-    void buy(Character *buyer, int id){
+    bool buy(Character *buyer, int id){
         if(id < 0 || id >= stock.size())
-            return;
+            return false;
 
         if(buyer->getInventory().getGold() >= stock[id]->getPrice() && buyer->getInventory().getAvailableSpace() > 0){
-
             buyer->getInventory().addGold(-stock[id]->getPrice());
 
             buyer->getInventory().insertItem(stock[id]);
+
+            return true;
+        }else{
+            return false;
         }
     }
 
-    void sell(Character *seller, int id){
-
+    bool sell(Character *seller, int id){
         if(id < 0 || id >= seller->getInventory().getItemAmount())
-            return;
+            return false;
 
         seller->getInventory().addGold(seller->getInventory().searchItem(id)->getPrice() * 0.6);
         seller->getInventory().removeItem(id);
+
+        return true;
     }
 
     operator string() const{
