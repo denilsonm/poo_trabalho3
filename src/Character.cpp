@@ -41,7 +41,7 @@ string Character::getName() const{
  * Saída: (bool) esta vivo?
 */
 bool Character::isAlive() const{
-    return HP <= 0;
+    return HP > 0;
 }
 
 /*

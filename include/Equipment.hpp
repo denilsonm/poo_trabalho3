@@ -15,21 +15,21 @@ class Equipment{
      * Descricao: (puramente virtual) retorna os pontos de ataque do equipamento
      * Saida: (int) pontos de ataque
     */
-    virtual int getAttackPts() = 0;
+    virtual int getAttackPts() const = 0;
     
     /*
      * Nome: getDefensePts
      * Descricao: (puramente virtual) retorna os pontos de defesa do equipamento
      * Saida: (int) pontos de defesa
     */
-    virtual int getDefensePts() = 0;
+    virtual int getDefensePts() const = 0;
 
     /*
      * Nome: MaximumEquipped
      * Descricao: (puramente virtual) retorna a quantidade máxima desse item que pode ser equipada
      * Saida: (int) quantidade máxima
     */
-    virtual int MaximumEquipped() = 0;
+    virtual int MaximumEquipped() const = 0;
     
     /*
      * Nome: getName

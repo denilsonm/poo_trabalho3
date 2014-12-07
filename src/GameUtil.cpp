@@ -74,6 +74,6 @@ int GameUtil::generateRandom(int a, int b){
  * Entrada: (double) menor valor, (double) maior valor
  * Saida: Numero aleatorio gerado (double)
 */
-static int generateDouble(int a, int b){
+double GameUtil::generateDouble(double a, double b){
     return ((double)rand())/(b-a)+a;
 }

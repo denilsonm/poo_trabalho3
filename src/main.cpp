@@ -10,6 +10,8 @@
 #include "Armor.hpp"
 #include "Weapon.hpp"
 #include "Potion.hpp"
+#include "ManaPotion.hpp"
+#include "HealthPotion.hpp"
 #include "Shop.hpp"
 
 #define SHOP_PRODUCTS 5 // Quantidade de itens em cada loja
@@ -17,8 +19,6 @@
 using namespace std;
 
 int main(){
-
-    Armor asd("asd", 2, 2, 2);
 
     srand(time(NULL));
 
@@ -164,9 +164,26 @@ int main(){
     cout << "May the bravest of all win!";
 
     // Cria as lojas para o jogador
-    Shop<Armor> armorShop(SHOP_PRODUCTS);
-    Shop<Weapon> weaponShop(SHOP_PRODUCTS);
-    Shop<Potion> potionShop(SHOP_PRODUCTS);
+    Shop<Armor> armorShop;
+    for(unsigned int i = 0; i < SHOP_PRODUCTS; i++)
+    {
+        armorShop.addProduct(new Armor(GameUtil::makeName("TODO", "TODO"), GameUtil::generateDouble(10.0, 30.0), GameUtil::generateRandom(1, 20), GameUtil::generateDouble(1.0, 20.0)));
+    }
+
+    Shop<Weapon> weaponShop;
+    for(unsigned int i = 0; i < SHOP_PRODUCTS; i++)
+    {
+        weaponShop.addProduct(new Weapon(GameUtil::makeName("TODO", "TODO"), GameUtil::generateDouble(15.0, 40.0), GameUtil::generateRandom(1, 20)));
+    }
+
+    Shop<Potion> potionShop;
+    for(unsigned int i = 0; i < SHOP_PRODUCTS; i++)
+    {
+        if(GameUtil::generateRandom(1, 10) > 5)
+            potionShop.addProduct((Potion*)new ManaPotion(GameUtil::makeName("TODO", "TODO"), GameUtil::generateDouble(1.0, 8.0), GameUtil::generateRandom(1, 50)));
+        else
+            potionShop.addProduct((Potion*)new HealthPotion(GameUtil::makeName("TODO", "TODO"), GameUtil::generateDouble(2.0, 8.0), GameUtil::generateRandom(1, 50)));
+    }
     
     // Inicia o torneio
     while(tournament.getWinner() == NULL && player->isAlive())

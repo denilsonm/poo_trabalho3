@@ -37,7 +37,7 @@ class Armor : public Item, public Equipment{
      * Descricao: retorna os pontos de defesa da armadura
      * Saida: (int) pontos de defesa
     */
-    virtual int getDefensePts() const;
+    int getDefensePts() const;
     
     /*
      * Nome: getAttackPts

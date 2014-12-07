@@ -10,23 +10,23 @@ class Shop{
     vector<T*> stock;
 
     public:
-    Shop(int numOfProducts){
-        for(unsigned int i = 0; i < numOfProducts; i++)
-            stock.push_back(new T());
-    }
-
     ~Shop(){
         for(unsigned int i = 0; i < stock.size(); i++)
             delete stock.at(i);
+    }
+
+    void addProduct(T* product)
+    {
+        stock.push_back(product);
     }
 
     void buy(Character *buyer, int id){
         if(id < 0 || id >= stock.size())
             return;
 
-        if(buyer->getInventory().getGold() >= stock[id].getPrice() && buyer->getInventory().getAvailableSpace() > 0){
+        if(buyer->getInventory().getGold() >= stock[id]->getPrice() && buyer->getInventory().getAvailableSpace() > 0){
 
-            buyer->getInventory().addGold(-stock[id].getPrice());
+            buyer->getInventory().addGold(-stock[id]->getPrice());
 
             buyer->getInventory().insertItem(stock[id]);
         }

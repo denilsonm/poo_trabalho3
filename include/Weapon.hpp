@@ -15,15 +15,13 @@ class Weapon : public Item, public Equipment{
     protected:
     int attackpts;
 
-    double range;
-
     public:
     /*
      * Nome: Weapon (Construtor)
      * Descricao: Construtor que define os valores iniciais para os atributos da classe
-     * Entrada: (string) nome da arma, (double) preço, (int) pontos de ataque, (double) alcance
+     * Entrada: (string) nome da arma, (double) preço, (int) pontos de ataque
     */
-    Weapon(const string name, double price, int attackpts, double range);
+    Weapon(const string name, double price, int attackpts);
 
     /*
      * Nome: Weapon (Construtor de cópia)
@@ -38,13 +36,6 @@ class Weapon : public Item, public Equipment{
      * Saida: (int) 0
     */
     int getDefensePts()const ;
-
-    /*
-     * Nome: getRange
-     * Descricao: retorna o alcance da arma
-     * Saida: (double) range
-    */
-    double getRange() const;
 
     /*
      * Nome: getAttackPts

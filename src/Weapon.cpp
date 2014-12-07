@@ -7,13 +7,11 @@
 /*
  * Nome: Weapon (Construtor)
  * Descricao: Construtor que define os valores iniciais para os atributos da classe
- * Entrada: (string) nome da arma, (double) preço, (int) pontos de ataque, (double) alcance
+ * Entrada: (string) nome da arma, (double) preço, (int) pontos de ataque
 */
-Weapon::Weapon(const string name, double price, int attackpts, double range) : Item(name, price){
+Weapon::Weapon(const string name, double price, int attackpts) : Item(name, price){
     // Certifica que os pontos de ataque estão dentro do intervalo permitido
     this->attackpts = GameUtil::checkInterval(1, attackpts, 20);
-
-    this->range = range;
 }
 
 /*
@@ -23,7 +21,6 @@ Weapon::Weapon(const string name, double price, int attackpts, double range) : I
 */
 Weapon::Weapon(Weapon & weapon) : Item(weapon){
     attackpts = weapon.attackpts;
-    range = weapon.range;
 }
 
 /*
@@ -33,15 +30,6 @@ Weapon::Weapon(Weapon & weapon) : Item(weapon){
 */
 int Weapon::getDefensePts() const{
     return 0;
-}
-
-/*
- * Nome: getRange
- * Descricao: retorna o alcance da arma
- * Saida: (double) range
-*/
-double Weapon::getRange() const{
-    return range;
 }
 
 /*
@@ -80,7 +68,7 @@ string Weapon::getName() const{
 Weapon::operator string() const{
     ostringstream buffer;
 
-    buffer << this->getName() << " ( " << this->getPrice() << " G / " << this->getAttackPts() << " attack / range: " << this->range << " m )";
+    buffer << this->getName() << " ( " << this->getPrice() << " G / " << this->getAttackPts() << " attack )";
 
     return buffer.str();  
 }

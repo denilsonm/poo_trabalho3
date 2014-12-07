@@ -62,7 +62,7 @@ class GameUtil{
          * Entrada: (double) menor valor, (double) maior valor
          * Saida: Numero aleatorio gerado (double)
         */
-        static int generateDouble(int a, int b);
+        static double generateDouble(double a, double b);
 };
 
 #endif
