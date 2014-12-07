@@ -1,6 +1,7 @@
 #include <vector>
 #include <string>
 #include <cstdlib>
+#include <typeinfo>
 
 #include "GameUtil.hpp"
 #include "Character.hpp"
@@ -119,7 +120,7 @@ int main(){
 
     // Lendo o nome do jogador
 
-    cout << "Pick your name: " << endl;
+    cout << "Pick your name:  ";
 
     string playerName;
     cin >> playerName;
@@ -129,7 +130,7 @@ int main(){
     int playerClass;
 
     do{
-        cout << "Pick your class (1 - Knight/2 - Wizard/3 - Archer): " << endl;
+        cout << "\nPick your class (1 - Knight/2 - Wizard/3 - Archer):  ";
         cin >> playerClass;
     }while(playerClass < 1 || playerClass > 3);
 
@@ -166,11 +167,11 @@ int main(){
     int partyColor = blue;
 
     // Cria o time do jogador
-    Party *party = new Party(partyName, (Color)partyColor);
+    Party *playerParty = new Party(partyName, (Color)partyColor);
     partyColor++;
 
     // Coloca o jogador no time
-    party->addChar(player);
+    playerParty->addChar(player);
     
     // Cria os NPC's do time do personagem do jogador
     for(unsigned int i = 0; i < 2; i++)
@@ -180,15 +181,15 @@ int main(){
         switch(npcClass)
         {
             case 1: // Knight
-                party->addChar(new Knight(GameUtil::makeName("name", "surname"), 100, 0, 1));
+                playerParty->addChar(new Knight(GameUtil::makeName("name", "surname"), 100, 0, 1));
                 break;
 
             case 2: // Wizard
-                party->addChar(new Wizard(GameUtil::makeName("name", "surname"), 70, 50, 1));
+                playerParty->addChar(new Wizard(GameUtil::makeName("name", "surname"), 70, 50, 1));
                 break;
 
             case 3: // Archer
-                party->addChar(new Archer(GameUtil::makeName("name", "surname"), 80, 0, 1));
+                playerParty->addChar(new Archer(GameUtil::makeName("name", "surname"), 80, 0, 1));
                 break;
 
             default:
@@ -197,9 +198,10 @@ int main(){
     }
 
     // Coloca o time do personagem do jogador na lista para o torneio
-    partyList.push_back(party);
+    partyList.push_back(playerParty);
 
     // Cria os times inimigos
+    Party *party;
     for(unsigned int i = 0; i < 7; i++)
     {
         party = new Party(GameUtil::makeName("TODO", "TODO"), (Color)partyColor);
@@ -270,6 +272,7 @@ int main(){
 
         while(playerChoice != 3)
         {
+            playerChoice = 0;
             cout << "Hello my friend, I'm Barnabas and I sell the best armors of this game. Do you want to:\n\n\t1 - Buy\n\t2 - Sell\n\t3 - Exit\n\nYour option: " << endl;
             cin >> playerChoice;
 
@@ -332,6 +335,7 @@ int main(){
 
         while(playerChoice != 3)
         {
+            playerChoice = 0;
             cout << "Hi brave hero! My name is Asdrubal, the Blacksmith, and my weapons are the best in town. Do you want to:\n\n\t1 - Buy\n\t2 - Sell\n\t3 - Exit\n\nYour option: " << endl;
             cin >> playerChoice;
 
@@ -392,6 +396,7 @@ int main(){
 
         while(playerChoice != 3)
         {
+            playerChoice = 0;
             cout << "Hey! You can call me Leslisson, the Wizard. I sell potions for the challengers in the Tournament. Do you want to\n\n\t1 - Buy\n\t2 - Sell\n\t3 - Exit\n\nYour option: " << endl;
             cin >> playerChoice;
 
@@ -445,11 +450,54 @@ int main(){
             }
         }
 
+        // Permite que o jogador equipe ou desequipe itens
+        playerChoice = 0;
+        while(playerChoice != 3){
+        playerChoice = 0;
+        
+            cout << "\n\n\nDo you want to 1 - Equip Item, 2 - Unequip Item or 3 - Battle?:   ";
+            cin >> playerChoice;
+            cout << endl << endl;
+
+            switch(playerChoice){
+                case 1:
+                    
+                    for(unsigned int i = 0; i < player->getInventory().getItemAmount(); i++) {
+                        if(dynamic_cast<Weapon*>(player->getInventory().searchItem(i)) != NULL || dynamic_cast<Armor*>(player->getInventory().searchItem(i)) != NULL)
+                            if(!player->getInventory().isEquipped(player->getInventory().searchItem(i)->getName()))
+                                cout << i << " - " << player->getInventory().searchItem(i)->getName() << endl;
+                    }
+
+                    cin >> playerChoice;
+
+                    if(playerChoice >= 0 && playerChoice < player->getInventory().getItemAmount())
+                        player->getInventory().equip(dynamic_cast<Equipment*>(player->getInventory().searchItem(playerChoice)));
+                    
+                    break;
+                case 2:
+
+                    for(unsigned int i = 0; i < player->getInventory().getEquipmentAmount(); i++)
+                        cout << i << " - " << player->getInventory().searchEquipment(i)->getName() << endl;
+
+                    cin >> playerChoice;
+
+                    if(playerChoice >= 0 && playerChoice < player->getInventory().getEquipmentAmount())
+                        player->getInventory().unequip(player->getInventory().searchEquipment(playerChoice));
+                    
+                    break;
+                case 3:
+                    break;
+                default:
+                    break;
+            }
+        
+        }
+
         // Executa um round do torneio
         tournament.startRound();
     }
 
-    if(player->isAlive())
+    if(tournament.getWinner() == playerParty)
         cout << "TODO<congratulations here>" << endl;
     else
         cout << "TODO<game over here>" << endl;
