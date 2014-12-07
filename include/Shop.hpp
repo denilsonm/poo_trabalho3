@@ -52,7 +52,7 @@ class Shop{
         buffer << "These are our products, to buy one type the corresponding number: " << endl << endl;
     
         for(unsigned int i = 0; i < stock.size(); i++)
-            buffer << i << " - " << stock[i]->getName() << endl;
+            buffer << "\t" << i << " - " << (string)*(stock[i]) << endl;
 
         return buffer.str();
     }

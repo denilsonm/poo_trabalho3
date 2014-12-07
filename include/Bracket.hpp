@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <thread>
+#include <mutex>
 
 #include "Party.hpp"
 #include "Character.hpp"
@@ -42,14 +43,14 @@ class Bracket{
      * Descricao: Resolve a arvore de chaves de forma recursiva
      * Entrada: (vector<thread>) vetor de threads
     */
-        void solveTree(vector<thread> & battles);
+        void solveTree(vector<thread> & battles, mutex barrier);
 
     /*
      * Nome: solveBattle
      * Descricao: Faz uma batalha entre times
      * Saida: (void)
     */
-        void solveBattle();
+        void solveBattle(mutex barrier);
 
     /*
      * Nome: getWinner

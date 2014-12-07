@@ -1,5 +1,6 @@
 #include <vector>
 #include <thread>
+#include <mutex>
 
 #include "Tournament.hpp"
 #include "Bracket.hpp"
@@ -30,11 +31,20 @@ Tournament::~Tournament(){
      * Saida: (void)
     */
 void Tournament::startRound(){
-    vector<thread> battles;
+    // Vetor de batalhas acontecendo
 
-    mainBracket->solveTree(battles);
+    vector<thread> battles;
+    mutex barrier;
+
+    // Executa um round, sendo cada batalha executada em
+    // uma thread.
+
+    mainBracket->solveTree(battles, barrier);
 
     int i;
+
+    // Esperar a execucao de todas as batalhas ocorrendo em
+    // paralelo terminar
 
     for(i=0; i<battles.size(); i++)
         if(battles[i].joinable())

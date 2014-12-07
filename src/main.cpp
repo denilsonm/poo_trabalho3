@@ -41,6 +41,18 @@ int main(){
     GameUtil::pushName("adjective", "Frozen");
     GameUtil::pushName("adjective", "Beautiful");
     GameUtil::pushName("adjective", "Marvelous");
+    GameUtil::pushName("adjective", "Jolly");
+
+    GameUtil::pushName("teamnames", "Elves");
+    GameUtil::pushName("teamnames", "Dwarves");
+    GameUtil::pushName("teamnames", "Destroyers");
+    GameUtil::pushName("teamnames", "Jumpers");
+    GameUtil::pushName("teamnames", "Rabbits");
+    GameUtil::pushName("teamnames", "Women");
+    GameUtil::pushName("teamnames", "Aliens");
+    GameUtil::pushName("teamnames", "Lovers");
+    GameUtil::pushName("teamnames", "Ninjas");
+    GameUtil::pushName("teamnames", "Pirates");
 
     GameUtil::pushName("weapon", "Bow");
     GameUtil::pushName("weapon", "Crossbow");
@@ -98,7 +110,12 @@ int main(){
 
     // Introducao do jogo
 
-    cout << "TODO<<Lore vai aqui>>\n\n";
+    cout << "In a world full of darkness and injustice, the Great King of Lore Ipsum decided to create a tournament.";
+    cout << " This deadly tournament will decide the new heros that can bring peace to kingdom.\n You, a famous adventurer,";
+    cout << " hear about this and decide to ask about. A man, working for King Foo, explains that the battle will have 8";
+    cout << " parties with three people each, and they'll fight till death.\n Hearing this, you decided to join the Great";
+    cout << " Colossal Century Magic Tournament For The Peace of Mankind in This World Full of Darkness First Edition ";
+    cout << "(a.k.a. GCCMTFTPoMiTWFoDFE) with another two friends.\n\n";
 
     // Lendo o nome do jogador
 

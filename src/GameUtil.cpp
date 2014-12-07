@@ -75,5 +75,5 @@ int GameUtil::generateRandom(int a, int b){
  * Saida: Numero aleatorio gerado (double)
 */
 double GameUtil::generateDouble(double a, double b){
-    return ((double)rand())/(b-a)+a;
+    return ((double)rand())/(RAND_MAX)*(b-a)+a;
 }
