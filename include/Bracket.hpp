@@ -43,14 +43,14 @@ class Bracket{
      * Descricao: Resolve a arvore de chaves de forma recursiva
      * Entrada: (vector<thread>) vetor de threads
     */
-        void solveTree(vector<thread> & battles, mutex barrier);
+        void solveTree(vector<thread> & battles);
 
     /*
      * Nome: solveBattle
      * Descricao: Faz uma batalha entre times
      * Saida: (void)
     */
-        void solveBattle(mutex barrier);
+        void solveBattle();
 
     /*
      * Nome: getWinner

@@ -3,10 +3,13 @@
 #include <vector>
 #include <string>
 #include <map>
+#include <mutex>
 
 #include "GameUtil.hpp"
 
 using namespace std;
+
+mutex GameUtil::print_mutex;
 
 map<string, vector<string> > GameUtil::namebase = map<string, vector<string> >();
 

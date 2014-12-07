@@ -4,6 +4,7 @@
 #include <map>
 #include <vector>
 #include <string>
+#include <mutex>
 
 using namespace std;
 
@@ -20,6 +21,13 @@ class GameUtil{
         */
 
         static map<string, vector<string> > namebase;
+
+        /*
+            Comandos que potencialmente possam ser acessados ao mesmo tempo
+            podem usar esse mutex global para evitar problemas
+        */
+
+        static mutex print_mutex;
 
     public:
 

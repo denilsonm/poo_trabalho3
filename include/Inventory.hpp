@@ -201,11 +201,7 @@ class Inventory{
     */
         int getWeight() const;
 
-<<<<<<< HEAD
     operator string() const;
-=======
-        operator string() const;
->>>>>>> 14cb8029ed8efb05b82f2be361ade968490a9c94
 };
 
 #endif

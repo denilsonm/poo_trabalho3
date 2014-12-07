@@ -34,12 +34,11 @@ void Tournament::startRound(){
     // Vetor de batalhas acontecendo
 
     vector<thread> battles;
-    mutex barrier;
 
     // Executa um round, sendo cada batalha executada em
     // uma thread.
 
-    mainBracket->solveTree(battles, barrier);
+    mainBracket->solveTree(battles);
 
     int i;
 

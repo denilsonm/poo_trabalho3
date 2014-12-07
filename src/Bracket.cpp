@@ -66,7 +66,7 @@ Bracket::~Bracket(){
      * Descricao: Resolve a arvore de chaves de forma recursiva
      * Entrada: (vector<thread>) vetor de threads
     */
-void Bracket::solveTree(vector<thread> & battles, mutex barrier){
+void Bracket::solveTree(vector<thread> & battles){
     if(winner == NULL && leftBracket->winner != NULL && rightBracket->winner != NULL){
         // Se o bracket não tiver decidido um vencedor, mas seus filhos sim, então
         // iniciar uma batalha
@@ -85,7 +85,7 @@ void Bracket::solveTree(vector<thread> & battles, mutex barrier){
      * Descricao: Faz uma batalha entre parties
      * Saida: (void)
     */
-void Bracket::solveBattle(mutex barrier){
+void Bracket::solveBattle(){
 
     // Executando uma batalha ate a morte! >:D
 
