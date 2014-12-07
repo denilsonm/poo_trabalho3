@@ -68,6 +68,14 @@ class Weapon : public Item, public Equipment{
     */
     void use(Character & character);
 
+    /*
+     * Nome: use
+     * Descricao: Equipa o item
+     * Entrada: (Character&) Personagem em qual o item será equipado
+     * Saida: void
+    */
+    string getName() const;
+
     // Retorna uma descricao do item
     operator string() const;
 };

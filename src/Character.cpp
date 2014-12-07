@@ -227,10 +227,9 @@ Inventory & Character::getInventory(){
  * Descricao: Retorna os pontos de vida do personagem para o valor máximo
  * Saida: void
 */
-void resurrect()
+void Character::resurrect()
 {
     HP = MAXHP;
-    //TODO
 }
 
 // Nas classes filho de Character, a funcao getAttackPoints e

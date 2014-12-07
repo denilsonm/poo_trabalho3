@@ -35,10 +35,10 @@ void Shop<T>::buy(Character *buyer, int id)
 template <typename T>
 void Shop<T>::sell(Character *seller, int id)
 {
-    if(id < 0 || id >= seller.getInventory().getItemAmount()
+    if(id < 0 || id >= seller->getInventory().getItemAmount())
         return;
 
-    seller->getInventory().addGold(seller.getInventory().searchItem(id).getPrice() * 0.6);
+    seller->getInventory().addGold(seller->getInventory().searchItem(id)->getPrice() * 0.6);
     seller->getInventory().removeItem(id);
 }
 

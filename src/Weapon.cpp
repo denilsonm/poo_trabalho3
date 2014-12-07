@@ -1,6 +1,8 @@
 #include <iostream>
+#include <sstream>
 
 #include "Weapon.hpp"
+#include "GameUtil.hpp"
 
 /*
  * Nome: Weapon (Construtor)
@@ -56,7 +58,7 @@ int Weapon::getAttackPts() const{
  * Descricao: retorna a quantidade máxima desse item que podem ser equipados
  * Saida: (int) quantidade máxima
 */
-int Armor::MaximumEquipped() const{
+int Weapon::MaximumEquipped() const{
     return 2;
 };
 
@@ -66,8 +68,8 @@ int Armor::MaximumEquipped() const{
  * Entrada: (Character&) Personagem em qual o item será equipado
  * Saida: void
 */
-void Armor::use(Character & character){
-    target.equip(this);
+void Weapon::use(Character & character){
+    character.getInventory().equip(this);
 }
 
 string Weapon::getName() const{

@@ -30,7 +30,7 @@ Tournament::~Tournament(){
      * Saida: (void)
     */
 void Tournament::startRound(){
-    vector<thread> battles();
+    vector<thread> battles;
 
     mainBracket->solveTree(battles);
 

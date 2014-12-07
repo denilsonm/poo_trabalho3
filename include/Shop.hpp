@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "Item.hpp"
+#include "Character.hpp"
 
 using namespace std;
 
