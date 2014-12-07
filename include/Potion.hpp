@@ -29,6 +29,8 @@ class Potion : public Item{
      * Entrada: (Potion&) Referencia para um objeto Potion
     */
     Potion(Potion & potion);
+
+    virtual ~Potion();
 };
 
 #endif

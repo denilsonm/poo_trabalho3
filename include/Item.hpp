@@ -37,6 +37,8 @@ class Item{
     */
     Item(Item & item);
 
+    virtual ~Item();
+
     /*
      * Nome: getName
      * Descricao: Retorna o nome do item

@@ -47,6 +47,8 @@ class Character{
             */
         Character(const string name, int hp, int mp);
 
+        virtual ~Character();
+
         /*
                * Nome: getName
                * Descricao: Retorna o nome do personagem

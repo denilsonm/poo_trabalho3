@@ -17,3 +17,5 @@ Potion::Potion(const string name, double price, int restorepts) : Item(name, pri
 Potion::Potion(Potion & potion) : Item(potion){
     restorepts = potion.restorepts;
 }
+
+Potion::~Potion(){}

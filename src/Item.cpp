@@ -21,6 +21,8 @@ Item::Item(Item & item){
     price = item.price;
 }
 
+Item::~Item(){}
+
 /*
  * Nome: getName
  * Descricao: Retorna o nome do item

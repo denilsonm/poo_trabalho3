@@ -26,6 +26,8 @@ Character::Character(const string name, int hp, int mp){
     XP = 1;
 }
 
+Character::~Character(){}
+
 /*
  * Nome: getName
  * Descricao: Retorna o nome do personagem

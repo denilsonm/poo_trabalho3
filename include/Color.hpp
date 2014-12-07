@@ -9,8 +9,8 @@ enum Color{
 	yellow,
 	white,
 	black,
-    purple,
-    oragen
+        purple,
+        orange
 };
 
 #endif

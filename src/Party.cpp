@@ -74,6 +74,14 @@ string Party::toString(){
         case black:
             buffer << "Black";
             break;
+        case purple:
+            buffer << "Purple";
+            break;
+        case orange:
+            buffer << "Orange";
+            break;
+        default:
+            break;
     }
 
     buffer << "\n";
