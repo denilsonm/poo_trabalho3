@@ -9,6 +9,7 @@
 #include "Archer.hpp"
 #include "Tournament.hpp"
 #include "Color.hpp"
+#include "Shop.hpp"
 
 using namespace std;
 
@@ -154,15 +155,145 @@ int main(){
     Tournament tournament(partyList);
 
     cout << "May the bravest of all win!";
+
+    // Cria as lojas para o jogador
+    Shop<Armor> armorShop(SHOP_PRODUCTS);
+    Shop<Weapon> weaponShop(SHOP_PRODUCTS);
+    Shop<Potion> potionShop(SHOP_PRODUCTS);
     
     // Inicia o torneio
     while(tournament.getWinner() == NULL && player.isAlive())
     {
+        // Abre as lojas para o jogador
+
+
+        //
+        // Loja de armaduras
+        //
+        int playerChoice = 0;
+
+        while(playerChoice != 3)
+        {
+            cout << "Hello my friend, I'm Barnabas and I sell the best armors of this game. Do you want to 1 - Buy, 2 - Sell or 3 - Exit?" << endl;
+            cin >> playerChoice;
+
+            switch(playerChoice)
+            {
+                case 1: // O jogador escolhe comprar um item da loja
+                    cout << (string)armorShop << endl;
+                    cin >> playerChoice;
+
+                    armorShop.buy(player, playerChoice);
+
+                    break;
+                case 2: // O jogador escolhe vender um item do seu inventario
+                    cout << "Barnabas buys everything for a fair price. What do you want to sell?" << endl << endl;
+                    
+                    for(unsigned int i = 0; i < player->getInventory().getItemAmount(); i++) 
+                    {
+                        cout << i << " - " << player->getInventory().searchItem(i)->getName() << endl;
+                    }
+
+                    cout << endl;
+                    cin >> playerChoice;
+
+                    armorShop.sell(player, playerChoice);
+
+                    break;
+                case 3: // O jogador escolhe sair da loja
+                    cout << "Goodbye fella!" << endl;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        //
+        // Loja de Armas
+        //
+
+        playerChoice = 0;
+
+        while(playerChoice != 3)
+        {
+            cout << "Hi brave hero! My name is Asdrubal, the Blacksmith, and my weapons are the best in town. Do you want to 1 - Buy, 2 - Sell or 3 - Exit?" << endl;
+            cin >> playerChoice;
+
+            switch(playerChoice)
+            {
+                case 1: // O jogador escolhe comprar um item da loja
+                    cout << (string)armorShop << endl;
+                    cin >> playerChoice;
+
+                    armorShop.buy(player, playerChoice);
+
+                    break;
+                case 2: // O jogador escolhe vender um item do seu inventario
+                    cout << "Another seller? This way I will be a poor!" << endl << endl;
+                    
+                    for(unsigned int i = 0; i < player->getInventory().getItemAmount(); i++) 
+                    {
+                        cout << i << " - " << player->getInventory().searchItem(i)->getName() << endl;
+                    }
+
+                    cout << endl;
+                    cin >> playerChoice;
+
+                    armorShop.sell(player, playerChoice);
+
+                    break;
+                case 3: // O jogador escolhe sair da loja
+                    cout << "May the lucky be with you." << endl;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        //
+        // Loja de pocoes
+        //
+
+        playerChoice = 0;
+
+        while(playerChoice != 3)
+        {
+            cout << "Hey! You can call me Leslisson, the Wizard. I sell potions for the challengers in the Tournament. Do you want to 1 - Buy, 2 - Sell or 3 - Exit?" << endl;
+            cin >> playerChoice;
+
+            switch(playerChoice)
+            {
+                case 1: // O jogador escolhe comprar um item da loja
+                    cout << (string)armorShop << endl;
+                    cin >> playerChoice;
+
+                    armorShop.buy(player, playerChoice);
+
+                    break;
+                case 2: // O jogador escolhe vender um item do seu inventario
+                    cout << "One hand washes another..." << endl << endl;
+                    
+                    for(unsigned int i = 0; i < player->getInventory().getItemAmount(); i++) 
+                    {
+                        cout << i << " - " << player->getInventory().searchItem(i)->getName() << endl;
+                    }
+
+                    cout << endl;
+                    cin >> playerChoice;
+
+                    armorShop.sell(player, playerChoice);
+
+                    break;
+                case 3: // O jogador escolhe sair da loja
+                    cout << "Break a leg!" << endl;
+                    break;
+                default:
+                    break;
+            }
+        }
+
         // Executa um round do torneio
         tournament.startRound();
-
-        // Abre a loja para o jogador
-        //TODO shop
     }
 
     if(tournmant.getWinner() == player)
