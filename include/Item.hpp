@@ -45,13 +45,6 @@ class Item{
     virtual string getName() const;
 
     /*
-     * Nome: describe
-     * Descricao: retorna uma string descrevendo o item
-     * Saida: (string) descricao do item
-    */
-    virtual string describe() const = 0;
-
-    /*
      * Nome: getPrice
      * Descricao: Retorna o preço do item
      * Saida: (double) preço

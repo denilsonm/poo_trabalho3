@@ -18,6 +18,8 @@ using namespace std;
 
 int main(){
 
+    Armor asd("asd", 2, 2, 2);
+
     srand(time(NULL));
 
     // Dando dados para o gerador de nomes
