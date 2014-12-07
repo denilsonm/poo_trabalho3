@@ -20,6 +20,7 @@ Character::Character(const string name, int hp, int mp){
     dexterity = GameUtil::generateRandom(0, 9);
     constitution = GameUtil::generateRandom(0, 9);
 
+    MAXHP = hp;
     HP = hp;
     MP = mp;
     XP = 1;
@@ -228,6 +229,7 @@ Inventory & Character::getInventory(){
 */
 void resurrect()
 {
+    HP = MAXHP;
     //TODO
 }
 

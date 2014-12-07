@@ -30,6 +30,7 @@ class Character{
 
         int HP;
         int MP;
+        int MAXHP;
 
         int XP;
 
